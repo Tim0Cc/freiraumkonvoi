@@ -23,7 +23,7 @@ app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(flash())
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET, // set session_secret generated
   resave: false,
   saveUninitialized: false
 }))
@@ -53,13 +53,18 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 app.post('/register', checkNotAuthenticated, async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10)
-    users.push({
-      id: Date.now().toString(),
-      ag_name: req.body.ag_name,
-      email: req.body.email,
-      password: hashedPassword,
-      registerDate: Date.now()
-    })
+    const regToken = req.body.reg_token
+    if (regToken !== process.env.REGISTER_TOKEN) {
+      return res.redirect('/register')
+    } else {
+      users.push({
+        id: Date.now().toString(),
+        ag_name: req.body.ag_name,
+        email: req.body.email,
+        password: hashedPassword,
+        registerDate: Date.now()
+      })
+    }
     res.redirect('/login')
   } catch {
     res.redirect('/register')
@@ -95,4 +100,4 @@ function checkNotAuthenticated(req, res, next) {
 //   next()
 // }
 
-app.listen(process.env.base_URL || 3000)
+app.listen(process.env.BASE_URL || 3000)
