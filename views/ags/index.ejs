@@ -1,0 +1,10 @@
+<h2>Alle AGs</h2>
+<form action="/ags" method="GET">
+  <label>Name</label>
+  <input type="text" name="name" value="<%= searchOptions.name %>">
+  <button type="submit">suchen</button>
+</form>
+<br>
+  <% ags.forEach(ag => { %>
+    <div><%= ag.name %></div> 
+  <% }) %> 
