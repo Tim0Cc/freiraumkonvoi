@@ -36,44 +36,53 @@ router.post('/register', (req, res) => {
   //     errors.push({msg : 'password atleast 6 characters'})
   // }
   if(errors.length > 0 ) {
-      res.render('register', {
-          errors : errors,
-          name : name,
-          email : email,
-          password : password,
-          password2 : password2,
-          role: role})
+    res.render('register', {
+      errors : errors,
+      name : name,
+      email : email,
+      password : password,
+      password2 : password2,
+      role : role 
+    })
   } else {
-      //validation passed
-    User.findOne({email : email}).exec((err,user)=>{
-      console.log(user);   
+    User.findOne({name: name}).exec((err, user) => {
       if(user) {
-          errors.push({msg: 'email already registered'});
-          render(res,errors,name,email,password,password2,role);          
+        errors.push({msg: 'username already exists'})
+        res.render('register', {errors,name,email,password,password2,role})
       } else {
-        const newUser = new User({
-            name : name,
-            email : email,
-            password : password,
-            role: role,
-            registerDate : Date.now()
-        });
-        bcrypt.genSalt(10,(err,salt)=> 
-        bcrypt.hash(newUser.password,salt,
-            (err,hash)=> {
+          //validation passed
+        User.findOne({email : email}).exec((err,user)=>{
+          // console.log(user);
+          if(user) {
+            errors.push({msg: 'email already registered'});
+            res.render('register', { errors,name,email,password,password2,role });          
+          } else {
+            const newUser = new User({
+              name : name,
+              email : email,
+              password : password,
+              role: role,
+              registerDate : Date.now()
+            });
+            bcrypt.genSalt(10, (err,salt) => bcrypt.hash(
+              newUser.password, 
+              salt, 
+              (err,hash) => {
                 if(err) throw err;
-                    //save pass to hash
-                    newUser.password = hash;
+                  //save pass to hash
+                  newUser.password = hash;
                 //save user
                 newUser.save()
-                .then((value)=>{
-                    console.log(value)
-                req.flash('success_msg', 'Sie haben die AG erfolgreich registriert')
-                res.redirect('/users/login');
+                .then((value) => {
+                  console.log(value)
+                  req.flash('success_msg', 'Sie haben die AG erfolgreich registriert')
+                  res.redirect('/users/login');
                 })
-                .catch(value=> console.log(value));
-                  
-            }));
+                .catch(value=> console.log(value));      
+              }
+            ));
+          }
+        })
       }
     })
   }
