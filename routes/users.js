@@ -89,17 +89,15 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/login', (req, res, next) => {
+  let successPath
   const user = User.findOne({name: req.body.username})
   .then((user) => {
-    console.log(user)
-    let successPath
-    if (user.role === 'admin') {
-      return successPath = '/admindashboard'
-    } else {
-      return successPath = '/dashboard'
-    }
+    successPath = checkRole(user)
+    user = user
   })
   .then((successPath) => {
+    console.log('5: ' + successPath)
+    console.log(user)
     passport.authenticate('local', {
       successRedirect: successPath,
       failureRedirect: '/users/login',
@@ -107,6 +105,18 @@ router.post('/login', (req, res, next) => {
     })(req, res, next)
   })
 })
+
+function checkRole(user) {
+  if (user.role === 'admin') {
+    successPath = '/admindashboard'
+    console.log('1: ' + successPath)
+  } else {
+    successPath = '/dashboard'
+    console.log('2: ' + successPath)
+  }
+  console.log('3: ' + successPath)
+  return successPath
+}
 
 // logout
 
