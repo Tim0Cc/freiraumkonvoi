@@ -27,6 +27,7 @@ app.set('layout', 'layouts/layout')
 
 app.use(expressLayout)
 app.use(express.urlencoded({ limit: '10mb', extended: false }))
+// app.use(express.json())
 
 app.use(session({
   secret: process.env.SESSION_SECRET, // set session_secret generated
