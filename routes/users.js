@@ -20,9 +20,10 @@ router.post('/register', (req, res) => {
   const email = req.body.email
   const password = req.body.password
   const password2 = req.body.password2
-  // console.log(name, email, password, password2)
+  const role = req.body.role
+  console.log(name, email, password, password2)
   let errors = [];
-  if(!name || !email || !password || !password2) {
+  if(!name || !email || !password || !password2 || !role) {
       errors.push({msg : "Please fill in all fields"})
   }
   //check if match
@@ -40,19 +41,21 @@ router.post('/register', (req, res) => {
           name : name,
           email : email,
           password : password,
-          password2 : password2})
+          password2 : password2,
+          role: role})
   } else {
       //validation passed
     User.findOne({email : email}).exec((err,user)=>{
       console.log(user);   
       if(user) {
           errors.push({msg: 'email already registered'});
-          render(res,errors,name,email,password,password2);          
+          render(res,errors,name,email,password,password2,role);          
       } else {
         const newUser = new User({
             name : name,
             email : email,
             password : password,
+            role: role,
             registerDate : Date.now()
         });
         bcrypt.genSalt(10,(err,salt)=> 
