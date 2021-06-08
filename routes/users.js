@@ -80,11 +80,23 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/login', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/users/login',
-    failureFlash: true
-  })(req, res, next)
+  const user = User.findOne({email: req.body.email})
+  .then((user) => {
+    console.log(user)
+    let successPath
+    if (user.role === 'admin') {
+      return successPath = '/admindashboard'
+    } else {
+      return successPath = '/dashboard'
+    }
+  })
+  .then((successPath) => {
+    passport.authenticate('local', {
+      successRedirect: successPath,
+      failureRedirect: '/users/login',
+      failureFlash: true
+    })(req, res, next)
+  })
 })
 
 // logout
