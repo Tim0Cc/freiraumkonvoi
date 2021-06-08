@@ -89,7 +89,7 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/login', (req, res, next) => {
-  const user = User.findOne({email: req.body.email})
+  const user = User.findOne({name: req.body.username})
   .then((user) => {
     console.log(user)
     let successPath
