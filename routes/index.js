@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 // })
 
 //dashboard page
-router.get('/dashboard', ensureAuthenticated, (req,res)=>{
+router.get('/dashboard', ensureAuthenticated, (req,res) => {
   res.render('users/dashboard', {
     user: req.user
   })
