@@ -4,7 +4,7 @@ const { ensureAuthenticated, authRole } = require('../config/auth')
 
 // login page
 router.get('/', (req, res) => {
-  res.render('Welcome')
+  res.render('index')
 })
 
 // register page 

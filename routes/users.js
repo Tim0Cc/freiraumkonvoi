@@ -6,11 +6,11 @@ const passport = require('passport')
 
 // login handle
 router.get('/login', (req, res) => {
-  res.render('login')
+  res.render('auth/login')
 })
 
 router.get('/register', (req, res) => {
-  res.render('register')
+  res.render('auth/register')
 })
 
 // register handle
