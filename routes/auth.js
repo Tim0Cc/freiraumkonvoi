@@ -28,7 +28,7 @@ router.post('/register', (req, res) => {
   }
   //check if match
   if(password !== password2) {
-      errors.push({msg : "passwords dont match"});
+      errors.push({msg : "passwords don't match"});
   }
 
   //check if password is more than 6 characters
@@ -36,7 +36,7 @@ router.post('/register', (req, res) => {
   //     errors.push({msg : 'password atleast 6 characters'})
   // }
   if(errors.length > 0 ) {
-    res.render('register', {
+    res.render('auth/register', {
       errors : errors,
       name : name,
       email : email,
@@ -48,14 +48,14 @@ router.post('/register', (req, res) => {
     User.findOne({name: name}).exec((err, user) => {
       if(user) {
         errors.push({msg: 'username already exists'})
-        res.render('register', {errors,name,email,password,password2,role})
+        res.render('auth/register', {errors,name,email,password,password2,role})
       } else {
           //validation passed
         User.findOne({email : email}).exec((err,user)=>{
           // console.log(user);
           if(user) {
             errors.push({msg: 'email already registered'});
-            res.render('register', { errors,name,email,password,password2,role });          
+            res.render('auth/register', { errors,name,email,password,password2,role });          
           } else {
             const newUser = new User({
               name : name,
@@ -76,7 +76,7 @@ router.post('/register', (req, res) => {
                 .then((value) => {
                   console.log(value)
                   req.flash('success_msg', 'Sie haben die AG erfolgreich registriert')
-                  res.redirect('/users/login');
+                  res.redirect('/auth/login');
                 })
                 .catch(value=> console.log(value));      
               }
@@ -102,7 +102,7 @@ router.post('/login', (req, res, next) => {
   .then((successPath) => {
     passport.authenticate('local', {
       successRedirect: successPath,
-      failureRedirect: '/users/login',
+      failureRedirect: '/auth/login',
       failureFlash: true
     })(req, res, next)
   })
@@ -113,7 +113,7 @@ router.post('/login', (req, res, next) => {
 router.get('/logout', (req, res) => {
   req.logout()
   req.flash('success_msg', 'Sie haben sich erfolgreich ausgeloggt')
-  res.redirect('/users/login')
+  res.redirect('/auth/login')
 })
 
 
