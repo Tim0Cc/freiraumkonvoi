@@ -1,0 +1,16 @@
+<div>
+  <label for="title">Titel</label>
+  <input type="text" name="title">
+</div>
+<div>
+  <label for="description">Beschreibung</label>
+  <textarea name="description"></textarea>
+</div>
+<div>
+  <label for="user">AG</label>
+  <select name="user" id="">
+    <% users.forEach(user => { %>
+      <option label="<%= user.name %>" value="<%=user.id%>"></option>
+    <% }) %> 
+  </select>
+</div>

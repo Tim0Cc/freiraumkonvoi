@@ -1,0 +1,17 @@
+<h2>Alle Beiträge</h2>
+
+<div>
+  <% posts.forEach(post => { %>
+    <div>
+      <%= post.title %> 
+      <% users.forEach(user => { %> 
+        <% if(user.id == post.user) { %>
+         <%= user.name %>  
+        <% } %> 
+      <% }) %> 
+    </div>
+  <% }) %> 
+</div>
+<div>
+  <a href="/posts/new">neuer Beitrag</a>
+</div>
