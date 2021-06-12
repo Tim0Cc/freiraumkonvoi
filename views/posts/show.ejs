@@ -10,5 +10,8 @@
 </div>
 <div>
   <a href="/posts/<%= post.id %>/edit">Bearbeiten</a>
+  <%- include('../partials/deleteForm', {url: `/posts/${post.id}` }) %> 
+</div>
+<div>
   <a href="/posts">Alle Beiträge</a>
 </div>

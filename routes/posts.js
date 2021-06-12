@@ -82,4 +82,18 @@ router.put('/:id', async (req, res) => {
   }
 })
 
+router.delete('/:id', async (req, res) => {
+  let post
+  try {
+    post = await Post.findById(req.params.id)
+    await post.remove()
+    res.redirect('/posts')
+  } catch (error) {
+    console.error(error)
+    if (post != null) {
+      res.render('posts/show', { post })
+    }
+  }
+})
+
 module.exports = router
