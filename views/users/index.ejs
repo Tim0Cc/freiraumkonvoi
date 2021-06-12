@@ -2,7 +2,7 @@
 
 <% users.forEach(user => { %>
   <div>
-    <%= user.name %>
+    <a href="users/<%=user.id%>"><%= user.name %></a>
     <br>
     Rolle: <%= user.role %>
     <br>
