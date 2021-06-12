@@ -5,5 +5,11 @@
       <li><a href="/ags">AG – Arbeitsgruppen</a></li>
       <li><a href="/ags/new">Neue AG</a></li>
     </ul> -->
+    <% if(isAuthenticated) { %>
+      <a href="/auth/logout">Logout</a>
+    <% } else { %>
+      <a href="/auth/register">Registrieren</a>
+      <a href="/auth/login">Login</a> 
+    <% } %> 
   </nav>
 </header>

@@ -1,4 +1,6 @@
 <h1>Willkommen!</h1>
-<p>Create an account or login</p>
-<a href="/auth/register">Register</a>
-<a href="/auth/login">Login</a>
+<% if(!isAuthenticated) { %> 
+  <p>Create an account or login</p>
+  <a href="/auth/register">Register</a>
+  <a href="/auth/login">Login</a>
+<% } %> 
