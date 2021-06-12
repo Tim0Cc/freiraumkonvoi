@@ -3,7 +3,7 @@ function ensureAuthenticated(req,res,next) {
           return next();
       }
       req.flash('error_msg' , 'Sie müssen eingeloggt sein, um auf diesen Inhalt zugreifen zu können!');
-      res.redirect('/users/login');
+      res.redirect('/auth/login');
   }
 
 function authRole(role) {
