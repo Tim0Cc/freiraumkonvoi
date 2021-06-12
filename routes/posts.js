@@ -52,4 +52,34 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
   }
 })
 
+router.get('/:id/edit', ensureAuthenticated, authRole('admin'), async (req, res) => {
+  try {
+    const users = await User.find({})
+    const post = await Post.findById(req.params.id)
+    res.render('posts/edit', { users, post })
+  } catch (error) {
+    console.error(error)
+    res.redirect('/')
+  }
+})
+
+router.put('/:id', async (req, res) => {
+  let post
+  try {
+    post = await Post.findById(req.params.id)
+    post.title = req.body.title,
+    post.description = req.body.description,
+    post.user = req.body.user
+    await post.save()
+    res.redirect(`/posts/${post.id}`)
+  } catch (error) {
+    console.error(error)
+    if (post != null) {
+      render(`posts/${post.id}`, { post })
+    } else {
+      redirect('/')
+    }
+  }
+})
+
 module.exports = router
