@@ -42,4 +42,14 @@ router.post('/', async (req, res) => {
   }
 })
 
+router.get('/:id', ensureAuthenticated, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id).populate('user').exec()
+    res.render('posts/show', { post })
+  } catch (error) {
+    console.error(error)
+    res.redirect('/')
+  }
+})
+
 module.exports = router

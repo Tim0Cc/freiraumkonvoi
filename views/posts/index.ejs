@@ -2,8 +2,8 @@
 
 <div>
   <% posts.forEach(post => { %>
-    <div>
-      <%= post.title %> 
+    <div>    
+      <a href="/posts/<%= post.id %>"><%= post.title %></a>
       <% users.forEach(user => { %> 
         <% if(user.id == post.user) { %>
          <%= user.name %>  
