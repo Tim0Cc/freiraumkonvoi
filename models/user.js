@@ -22,6 +22,15 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     // required: true,
     default: Date.now
+  },
+  description: {
+    type: String
+  },
+  contact: {
+    type: String
+  },
+  statusOfWork: {
+    type: String
   }
 })
 
