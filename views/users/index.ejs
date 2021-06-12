@@ -1,0 +1,15 @@
+<h2>Alle AGs</h2>
+
+<% users.forEach(user => { %>
+  <div>
+    <%= user.name %>
+    <br>
+    Rolle: <%= user.role %>
+    <br>
+    Email: <%= user.email %> 
+    <br>
+    Beigetreten: <%= user.registerDate %> 
+  </div>
+  <br>
+  <br>
+<%  })  %> 

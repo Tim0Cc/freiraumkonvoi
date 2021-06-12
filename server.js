@@ -14,9 +14,10 @@ const passport = require('passport')
 
 require("./config/passport")(passport)
 
-const indexRouter = require('./routes/index')
 const authRouter = require('./routes/auth')
+const indexRouter = require('./routes/index')
 const postsRouter = require('./routes/posts')
+const usersRouter = require('./routes/users')
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
@@ -51,8 +52,9 @@ app.use((req, res, next) => {
   next();
 })
 
-app.use('/', indexRouter)
 app.use('/auth', authRouter)
+app.use('/', indexRouter)
 app.use('/posts', postsRouter)
+app.use('/users', usersRouter)
 
 app.listen(process.env.PORT || 3000)

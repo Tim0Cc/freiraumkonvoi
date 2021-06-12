@@ -1,5 +1,5 @@
 const express = require('express')
-router = express.Router()
+const router = express.Router()
 const Post = require('../models/post')
 const User = require('../models/user')
 const { ensureAuthenticated, authRole } = require('../config/auth')
