@@ -1,0 +1,24 @@
+<h2>Die AG <%= user.name %> Bearbeiten</h2>
+
+<form action="/users/<%= user.id %>?_method=PUT" method="POST">
+  <div>
+    <label for="name">AG-Name</label>
+    <input type="text" name="name" value ="<%= user.name %>">
+  </div>
+  <div>
+    <label for="description">Beschreibung</label>
+    <textarea name="description" value="<%= user.description %>" id="" cols="30" rows="10"></textarea>
+  </div>
+  <div>
+    <label for="contact">Kontaktinformationen</label>
+    <input type="text" name="contact" value="<%= user.contact %>">
+  </div>
+  <div>
+    <label for="statusOfWork">Arbeitsstand</label>
+    <textarea name="statusOfWork" value="<%= user.statusOfWork %>"></textarea>
+  </div>
+  <div>
+    <a href="/users/<%= user.id %>">abbrechen</a>
+    <button type="submit">AG aktualisieren</button>
+  </div>
+</form>
