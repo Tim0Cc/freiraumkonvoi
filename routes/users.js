@@ -3,6 +3,7 @@ const router = express.Router()
 const User = require('../models/user')
 const Post = require('../models/post')
 const { ensureAuthenticated, authRole } = require('../config/auth')
+const { rawListeners } = require('../models/post')
 
 router.get('/', ensureAuthenticated, async (req, res) => {
   try {
@@ -67,7 +68,8 @@ router.delete('/:id', ensureAuthenticated, authRole('admin'), async (req, res) =
     res.redirect('/users')
   } catch (error) {
     if (targetUser != null) {
-      res.render('users/show', { targetUser })
+      req.flash('error_msg', error.message)
+      res.redirect(`/users/${targetUser.id}`)
     } else {
       console.error(error)
       res.redirect('/')

@@ -74,7 +74,7 @@ router.post('/register', (req, res) => {
                 //save user
                 newUser.save()
                 .then((value) => {
-                  console.log(value)
+                  // console.log(value)
                   req.flash('success_msg', 'Sie haben die AG erfolgreich registriert')
                   res.redirect('/auth/login');
                 })
@@ -91,7 +91,6 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res, next) => {
   const user = User.findOne({name: req.body.username})
   .then((user) => {
-    console.log(user)
     let successPath
     if (user.role === 'admin') {
       return successPath = '/admindashboard'

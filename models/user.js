@@ -41,7 +41,7 @@ userSchema.pre('remove', function(next) {
     if (err) {
       next(err)
     } else if (posts.length > 0) {
-      next(new Error('Diese AG hat noch Beiträge. Bitte löschen Sie erst alle Beiträge'))
+      next(new Error('Diese AG hat noch Beiträge. Sie können die AG erst löschen, wenn Sie alle ihre Beiträge gelöscht haben'))
     } else {
       next()
     }
