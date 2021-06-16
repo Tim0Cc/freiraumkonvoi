@@ -1,19 +1,19 @@
-<h2> <%= user.name %> </h2>
+<h2> <%= targetUser.name %> </h2>
 
 <div>
   <h3>AG-Infos</h3>
   <div>
     <div>
-      <h4>Vorstellung der AG <%= user.name %>:</h4>
-      <%= user.description %> 
+      <h4>Vorstellung der AG <%= targetUser.name %>:</h4>
+      <%= targetUser.description %> 
     </div>
     <div>
       <h4>Kontakt:</h4>
-      <%= user.contact %> 
+      <%= targetUser.contact %> 
     </div>
     <div>
       <h4>Arbeitsstand:</h4>
-      <%= user.statusOfWork %> 
+      <%= targetUser.statusOfWork %> 
     </div>
   </div>
 </div>
@@ -29,6 +29,6 @@
 </div>
 <div>
   <a href="/users">zurück zu den AGs</a>
-  <a href="/users/<%= user.id %>/edit">AG bearbeiten</a>
-  <%- include('../partials/deleteForm', {url: `/users/${user.id}` }) %> 
+  <a href="/users/<%= targetUser.id %>/edit">AG bearbeiten</a>
+  <%- include('../partials/deleteForm', {url: `/users/${targetUser.id}` }) %> 
 </div>

@@ -6,8 +6,8 @@ const { ensureAuthenticated, authRole } = require('../config/auth')
 
 router.get('/', ensureAuthenticated, async (req, res) => {
   try {
-    const users = await User.find({})
-    res.render('users/index', { users })
+    const targetUsers = await User.find({})
+    res.render('users/index', { targetUsers })
   } catch (error) {
     console.error(error)
     res.redirect('/')
@@ -16,9 +16,9 @@ router.get('/', ensureAuthenticated, async (req, res) => {
 
 router.get('/:id', ensureAuthenticated, async (req, res) => {
   try {
-    const user = await User.findById(req.params.id)
-    const posts = await Post.find({}).where('user').equals(`${user.id}`).exec()
-    res.render('users/show', { user, posts })
+    const targetUser = await User.findById(req.params.id)
+    const posts = await Post.find({}).where('user').equals(`${targetUser.id}`).exec()
+    res.render('users/show', { targetUser, posts })
   } catch (error) {
     console.error(error)
     res.redirect('/')
@@ -27,11 +27,11 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
 
 router.get('/:id/edit', ensureAuthenticated, authRole('admin'), async (req, res) => {
   try {
-    const user = await User.findById(req.params.id)
-    res.render('users/edit', { user })
+    const targetUser = await User.findById(req.params.id)
+    res.render('users/edit', { targetUser })
   } catch (error) {
     if (user != null) {
-      res.render('/show', { user })
+      res.render('users/show', { targetUser })
     } else {
       console.error(error)
       res.redirect('/')
@@ -40,18 +40,18 @@ router.get('/:id/edit', ensureAuthenticated, authRole('admin'), async (req, res)
 })
 
 router.put('/:id', async (req, res) => {
-  let user
+  let targetUser
   try {
-    user = await User.findById(req.params.id)
-    user.name = req.body.name
-    user.contact = req.body.contact
-    user.description = req.body.description
-    user.statusOfWork = req.body.statusOfWork
-    await user.save()
-    res.redirect(`/users/${user.id}`)
+    targetUser = await User.findById(req.params.id)
+    targetUser.name = req.body.name
+    targetUser.contact = req.body.contact
+    targetUser.description = req.body.description
+    targetUser.statusOfWork = req.body.statusOfWork
+    await targetUser.save()
+    res.redirect(`/users/${targetUser.id}`)
   } catch (error) {
-    if (user != null) {
-      res.render('/show', { user })
+    if (targetUser != null) {
+      res.render('users/show', { targetUser })
     } else {
       console.error(error)
       res.redirect('/')
@@ -60,14 +60,14 @@ router.put('/:id', async (req, res) => {
 })
 
 router.delete('/:id', ensureAuthenticated, authRole('admin'), async (req, res) => {
-  let user
+  let targetUser
   try {
-    user = await User.findById(req.params.id)
-    await user.remove()
+    targetUser = await User.findById(req.params.id)
+    await targetUser.remove()
     res.redirect('/users')
   } catch (error) {
-    if (user != null) {
-      res.render('/show', { user })
+    if (targetUser != null) {
+      res.render('users/show', { targetUser })
     } else {
       console.error(error)
       res.redirect('/')

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
-const UserSchema = new mongoose.Schema({
+const Post = require('./post')
+
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -34,6 +36,18 @@ const UserSchema = new mongoose.Schema({
   }
 })
 
-const User = mongoose.model('User', UserSchema)
+userSchema.pre('remove', function(next) {
+  Post.find({ user: this.id }, (err, posts) => {
+    if (err) {
+      next(err)
+    } else if (posts.length > 0) {
+      next(new Error('Diese AG hat noch Beiträge. Bitte löschen Sie erst alle Beiträge'))
+    } else {
+      next()
+    }
+  })
+})
+
+const User = mongoose.model('User', userSchema)
 
 module.exports = User

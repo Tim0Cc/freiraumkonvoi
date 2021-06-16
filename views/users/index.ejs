@@ -1,14 +1,14 @@
 <h2>Alle AGs</h2>
 
-<% users.forEach(user => { %>
+<% targetUsers.forEach(targetUser => { %>
   <div>
-    <a href="users/<%=user.id%>"><%= user.name %></a>
+    <a href="users/<%=targetUser.id%>"><%= targetUser.name %></a>
     <br>
-    Rolle: <%= user.role %>
+    Rolle: <%= targetUser.role %>
     <br>
-    Email: <%= user.email %> 
+    Email: <%= targetUser.email %> 
     <br>
-    Beigetreten: <%= user.registerDate %> 
+    Beigetreten: <%= targetUser.registerDate %> 
   </div>
   <br>
   <br>
