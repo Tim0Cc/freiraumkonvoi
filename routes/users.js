@@ -67,12 +67,12 @@ router.delete('/:id', ensureAuthenticated, authRole('admin'), async (req, res) =
     await targetUser.remove()
     res.redirect('/users')
   } catch (error) {
-    if (targetUser != null) {
-      req.flash('error_msg', error.message)
-      res.redirect(`/users/${targetUser.id}`)
-    } else {
+    if (targetUser == null) {
       console.error(error)
       res.redirect('/')
+    } else {
+      req.flash('error_msg', error.message)
+      res.redirect(`/users/${targetUser.id}`)
     }
   }
 })
