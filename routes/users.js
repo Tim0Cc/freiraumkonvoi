@@ -31,7 +31,7 @@ router.get('/:id/edit', ensureAuthenticated, authRole('admin'), async (req, res)
     res.render('users/edit', { user })
   } catch (error) {
     if (user != null) {
-      res.render('/:id', { user })
+      res.render('/show', { user })
     } else {
       console.error(error)
       res.redirect('/')
@@ -51,7 +51,23 @@ router.put('/:id', async (req, res) => {
     res.redirect(`/users/${user.id}`)
   } catch (error) {
     if (user != null) {
-      res.render('/:id', { user })
+      res.render('/show', { user })
+    } else {
+      console.error(error)
+      res.redirect('/')
+    }
+  }
+})
+
+router.delete('/:id', ensureAuthenticated, authRole('admin'), async (req, res) => {
+  let user
+  try {
+    user = await User.findById(req.params.id)
+    await user.remove()
+    res.redirect('/users')
+  } catch (error) {
+    if (user != null) {
+      res.render('/show', { user })
     } else {
       console.error(error)
       res.redirect('/')

@@ -29,5 +29,6 @@
 </div>
 <div>
   <a href="/users">zurück zu den AGs</a>
-    <a href="/users/<%= user.id %>/edit">AG bearbeiten</a>
+  <a href="/users/<%= user.id %>/edit">AG bearbeiten</a>
+  <%- include('../partials/deleteForm', {url: `/users/${user.id}` }) %> 
 </div>
