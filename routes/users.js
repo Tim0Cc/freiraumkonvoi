@@ -25,4 +25,54 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
   }
 })
 
+router.get('/:id/edit', ensureAuthenticated, authRole('admin'), async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id)
+    res.render('users/edit', { user })
+  } catch (error) {
+    if (user != null) {
+      res.render('/show', { user })
+    } else {
+      console.error(error)
+      res.redirect('/')
+    }
+  }
+})
+
+router.put('/:id', async (req, res) => {
+  let user
+  try {
+    user = await User.findById(req.params.id)
+    user.name = req.body.name
+    user.contact = req.body.contact
+    user.description = req.body.description
+    user.statusOfWork = req.body.statusOfWork
+    await user.save()
+    res.redirect(`/users/${user.id}`)
+  } catch (error) {
+    if (user != null) {
+      res.render('/show', { user })
+    } else {
+      console.error(error)
+      res.redirect('/')
+    }
+  }
+})
+
+router.delete('/:id', ensureAuthenticated, authRole('admin'), async (req, res) => {
+  let user
+  try {
+    user = await User.findById(req.params.id)
+    await user.remove()
+    res.redirect('/users')
+  } catch (error) {
+    if (user != null) {
+      res.render('/show', { user })
+    } else {
+      console.error(error)
+      res.redirect('/')
+    }
+  }
+})
+
 module.exports = router
