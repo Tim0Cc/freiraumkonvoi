@@ -91,16 +91,18 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res, next) => {
   const user = User.findOne({name: req.body.username})
   .then((user) => {
-    let successPath
-    if (user.role === 'admin') {
-      return successPath = '/admindashboard'
-    } else {
-      return successPath = '/dashboard'
+    let path
+    if (user != null) {
+      if (user.role === 'admin') {
+        return path = '/admindashboard'
+      } else {
+        return path = '/dashboard'
+      }
     }
   })
-  .then((successPath) => {
+  .then((path) => {
     passport.authenticate('local', {
-      successRedirect: successPath,
+      successRedirect: path,
       failureRedirect: '/auth/login',
       failureFlash: true
     })(req, res, next)
