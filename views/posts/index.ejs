@@ -2,13 +2,16 @@
 
 <div>
   <% posts.forEach(post => { %>
-    <div>    
-      <a class="btn btn-primary" href="/posts/<%= post.id %>"><%= post.title %></a>
+    <div>
       <% users.forEach(user => { %> 
         <% if(user.id == post.user) { %>
-         <%= user.name %>  
+         <%= user.name %>-AG  
         <% } %> 
       <% }) %> 
+    </div>
+    <br>
+    <div>    
+      <a class="btn btn-primary" href="/posts/<%= post.id %>"><%= post.title %></a>
     </div>
   <% }) %> 
 </div>

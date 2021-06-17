@@ -10,7 +10,8 @@
     <br>
     Email: <%= targetUser.email %> 
     <br>
-    Beigetreten: <%= targetUser.registerDate %> 
+    <% let date = targetUser.registerDate %> 
+    Beigetreten am: <%= `${date.getDate()}.${date.getMonth()}.${date.getYear()}` %> 
   </div>
   <br>
   <br>
