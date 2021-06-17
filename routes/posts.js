@@ -4,7 +4,7 @@ const Post = require('../models/post')
 const User = require('../models/user')
 const { ensureAuthenticated, authRole } = require('../config/auth')
 
-router.get('/', ensureAuthenticated, authRole('admin'), async (req, res) => {
+router.get('/', ensureAuthenticated, async (req, res) => {
   try {
     const posts = await Post.find({})
     const users = await User.find({})
@@ -82,7 +82,7 @@ router.put('/:id', async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', ensureAuthenticated, authRole('admin'), async (req, res) => {
   let post
   try {
     post = await Post.findById(req.params.id)
