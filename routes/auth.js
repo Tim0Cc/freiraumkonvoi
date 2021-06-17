@@ -21,7 +21,6 @@ router.post('/register', (req, res) => {
   const password = req.body.password
   const password2 = req.body.password2
   const role = req.body.role
-  console.log(name, email, password, password2)
   let errors = [];
   if(!name || !email || !password || !password2 || !role) {
       errors.push({msg : "Please fill in all fields"})
@@ -52,7 +51,6 @@ router.post('/register', (req, res) => {
       } else {
           //validation passed
         User.findOne({email : email}).exec((err,user)=>{
-          // console.log(user);
           if(user) {
             errors.push({msg: 'email already registered'});
             res.render('auth/register', { errors,name,email,password,password2,role });          
@@ -74,7 +72,6 @@ router.post('/register', (req, res) => {
                 //save user
                 newUser.save()
                 .then((value) => {
-                  // console.log(value)
                   req.flash('success_msg', 'Sie haben die AG erfolgreich registriert')
                   res.redirect('/auth/login');
                 })
