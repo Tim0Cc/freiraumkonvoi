@@ -1,24 +1,40 @@
-<h2>Die AG <%= targetUser.name %> Bearbeiten</h2>
+<h2 class="page-header">Die AG <%= targetUser.name %> Bearbeiten</h2>
 
 <form action="/users/<%= targetUser.id %>?_method=PUT" method="POST">
-  <div>
-    <label for="name">AG-Name</label>
-    <input type="text" name="name" value ="<%= targetUser.name %>">
+  <div class="form-row">
+    <div class="form-item">
+      <div>
+        <label for="name">AG-Name</label>
+        <input type="text" name="name" value ="<%= targetUser.name %>">
+      </div>
+    </div>
+    <div class="form-item">
+      <div>
+        <label for="contact">Kontaktinformationen</label>
+        <input type="text" name="contact" value="<%= targetUser.contact %>">
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-item">
+      <div>
+        <label for="description">Beschreibung</label>
+        <textarea name="description" id="" cols="30" rows="10"><%= targetUser.description %></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-item">
+      <div>
+        <label for="statusOfWork">Arbeitsstand</label>
+        <textarea name="statusOfWork"><%= targetUser.statusOfWork %></textarea>
+      </div>
+    <div>
   </div>
   <div>
-    <label for="description">Beschreibung</label>
-    <textarea name="description" id="" cols="30" rows="10"><%= targetUser.description %></textarea>
-  </div>
-  <div>
-    <label for="contact">Kontaktinformationen</label>
-    <input type="text" name="contact" value="<%= targetUser.contact %>">
-  </div>
-  <div>
-    <label for="statusOfWork">Arbeitsstand</label>
-    <textarea name="statusOfWork"><%= targetUser.statusOfWork %></textarea>
-  </div>
-  <div>
-    <a href="/users/<%= targetUser.id %>">abbrechen</a>
-    <button type="submit">AG aktualisieren</button>
+    <div class="form-row form-row-end btn-row">
+      <a class="btn btn-danger" href="/users/<%= targetUser.id %>">abbrechen</a>
+      <button class="btn btn-primary" type="submit">AG aktualisieren</button>
+    </div>
   </div>
 </form>

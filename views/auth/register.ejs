@@ -1,33 +1,54 @@
-<h1>Registrierung</h1>
+<h2 class="page-header">Registrierung</h2>
 <form action="/auth/register" method="POST">
-  <div>
-    <label for="name">AG - Name</label>
-    <input type="name" id="name" name="name" placeholder="Name eurer AG" required>
+  <div class="form-row">
+    <div class="form-item">
+      <div>
+        <label for="name">AG - Name</label>
+        <input type="name" id="name" name="name" placeholder="Name eurer AG" required>
+      </div>
+    </div>
   </div>
-  <div>
-    <label for="email">Kontakt-Email</label>
-    <input type="email" id="email" name="email" placeholder="eure Kontakt Email" required>
+  <div class="form-row">
+    <div class="form-item">
+      <div>
+        <label for="email">Kontakt-Email</label>
+        <input type="email" id="email" name="email" placeholder="eure Kontakt Email" required>
+      </div>
+    </div>
   </div>
-  <div>
-    <label for="password">Passwort</label>
-    <input type="password" id="password" name="password" placeholder="Wählt ein Passwort" required>
+  <div class="form-row">
+    <div class="form-item">
+      <div>
+        <label for="password">Passwort</label>
+        <input type="password" id="password" name="password" placeholder="Wählt ein Passwort" required>
+      </div>
+    </div>
   </div>
-  <div>
-    <label for="password2">Passwort</label>
-    <input type="password" id="password2" name="password2" placeholder="Bestätigt das Passwort" required>
+  <div class="form-row">
+    <div class="form-item">
+      <div>
+        <label for="password2">Passwort</label>
+        <input type="password" id="password2" name="password2" placeholder="Bestätigt das Passwort" required>
+      </div>
+    </div>
   </div>
-  <div>
-    <label for="role">Rolle</label>
-    <select name="role" id="role">
-      <option selected value="basic">Basic</option>
-      <option value="admin">Admin</option>
-    </select>
-    
+  <div class="form-row">
+    <div class="form-item">
+      <div>
+        <label for="role">Rolle</label>
+        <select name="role" id="role">
+          <option selected value="basic">Basic</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+        <!-- <div>
+          <label for="reg_token">Registrierung-Token</label>
+          <input type="reg_token" id="reg_token" name="reg_token" placeholder="Ihr" required>
+        </div> -->
+    </div>
   </div>
-  <!-- <div>
-    <label for="reg_token">Registrierung-Token</label>
-    <input type="reg_token" id="reg_token" name="reg_token" placeholder="Ihr" required>
-  </div> -->
-  <button type="submit">registrieren</button>
+  <div class="form-row form-row-end btn-row">
+    <button class="btn btn-primary" type="submit">registrieren</button>
+  </div>
 </form>
-<p>Bereits registriert? <a href="/auth/login">Login</a></p>
+<p>Bereits registriert? <a class="btn btn-primary" href="/auth/login">Login</a></p>

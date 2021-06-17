@@ -1,8 +1,10 @@
-<h2>Neuen Beitrag erstellen</h2>
+<h2 class="page-header">Neuen Beitrag erstellen</h2>
 
 <form action="/posts" method="POST">
   <%- include('_form_fields') %>
-  <button type="submit">Beitrag erstellen</button>
+  <div class="form-row form-row-end btn-row">
+    <button class="btn btn-primary" type="submit">Beitrag erstellen</button>
+  </div>
 </form>
 
-<a href="/posts">Alle Beiträge</a>
+<a class="btn btn-primary" href="/posts">Alle Beiträge</a>

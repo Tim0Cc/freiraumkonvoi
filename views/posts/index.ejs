@@ -1,9 +1,9 @@
-<h2>Alle Beiträge</h2>
+<h2 class="page-header">Alle Beiträge</h2>
 
 <div>
   <% posts.forEach(post => { %>
     <div>    
-      <a href="/posts/<%= post.id %>"><%= post.title %></a>
+      <a class="btn btn-primary" href="/posts/<%= post.id %>"><%= post.title %></a>
       <% users.forEach(user => { %> 
         <% if(user.id == post.user) { %>
          <%= user.name %>  
@@ -13,5 +13,7 @@
   <% }) %> 
 </div>
 <div>
-  <a href="/posts/new">neuer Beitrag</a>
+  <div class="form-row form-row-end btn-row">
+    <a class="btn btn-primary" href="/posts/new">neuer Beitrag</a>
+  </div>
 </div>

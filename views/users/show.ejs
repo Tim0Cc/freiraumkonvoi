@@ -1,4 +1,4 @@
-<h2> <%= targetUser.name %> </h2>
+<h2 class="page-header"> <%= targetUser.name %> </h2>
 
 <div>
   <h3>AG-Infos</h3>
@@ -28,7 +28,9 @@
   <% }) %>
 </div>
 <div>
-  <a href="/users">zurück zu den AGs</a>
-  <a href="/users/<%= targetUser.id %>/edit">AG bearbeiten</a>
-  <%- include('../partials/deleteForm', {url: `/users/${targetUser.id}` }) %> 
+  <div class="btn-row">
+    <a class="btn btn-primary" href="/users">zurück zu den AGs</a>
+    <a class="btn btn-primary" href="/users/<%= targetUser.id %>/edit">AG bearbeiten</a>
+    <%- include('../partials/deleteForm', {url: `/users/${targetUser.id}` }) %> 
+  </div>
 </div>

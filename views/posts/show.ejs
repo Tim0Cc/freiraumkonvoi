@@ -1,17 +1,28 @@
-<h2>
+<h2 class="page-header">
   <%= post.title %> 
 </h2>
 <div>
-  <%= post.description %> 
+  <div>
+    <%= post.description %> 
+  </div>
+  <div>
+    <strong>AG:</strong>
+    <%= post.user.name %> 
+  </div>
 </div>
+<br>
 <div>
-  <strong>AG:</strong>
-  <%= post.user.name %> 
-</div>
-<div>
-  <a href="/posts/<%= post.id %>/edit">Bearbeiten</a>
-  <%- include('../partials/deleteForm', {url: `/posts/${post.id}` }) %> 
-</div>
-<div>
-  <a href="/posts">Alle Beiträge</a>
+  <div class="btn-row">
+    <div>
+      <a class="btn btn-primary" href="/posts/<%= post.id %>/edit">Bearbeiten</a>
+      <br>
+      <br>
+      <%- include('../partials/deleteForm', {url: `/posts/${post.id}` }) %> 
+    </div>
+  </div>
+  <div>
+    <div class="form-row-end btn-row">
+      <a class="btn btn-primary" href="/posts">Alle Beiträge</a>
+    </div>
+  </div>
 </div>

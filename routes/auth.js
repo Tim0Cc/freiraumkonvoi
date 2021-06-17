@@ -91,14 +91,15 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res, next) => {
   const user = User.findOne({name: req.body.username})
   .then((user) => {
-    let path
-    if (user != null) {
-      if (user.role === 'admin') {
-        return path = '/admindashboard'
-      } else {
-        return path = '/dashboard'
-      }
-    }
+    let path = '/dashboard'
+    return path
+    // if (user != null) {
+    //   if (user.role === 'admin') {
+    //     return path = '/admindashboard'
+    //   } else {
+    //     return path = '/dashboard'
+    //   }
+    // }
   })
   .then((path) => {
     passport.authenticate('local', {

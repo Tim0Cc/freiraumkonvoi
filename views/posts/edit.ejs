@@ -1,5 +1,7 @@
 <form action="/posts/<%=post.id%>?_method=PUT" method="POST">
-  <%- include('_form_fields') %> 
-  <a href="/posts/<%= post.id %>">abbrechen</a>
-  <button type="submit">Änderungen speichern</button>
+  <%- include('_form_fields') %>
+  <div class="form-row form-row-end btn-row">
+    <a class="btn btn-primary" href="/posts/<%= post.id %>">abbrechen</a>
+    <button class="btn btn-primary" type="submit">Änderungen speichern</button>
+  </div>
 </form>
