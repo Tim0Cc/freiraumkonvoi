@@ -30,6 +30,7 @@ app.set('layout', 'layouts/layout')
 
 app.use(expressLayout)
 app.use(methodOverride('_method'))
+app.use(express.static('public'))
 app.use(express.urlencoded({ limit: '10mb', extended: false }))
 // app.use(express.json())
 
