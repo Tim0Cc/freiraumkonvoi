@@ -23,8 +23,7 @@ router.post('/', async (req, res) => {
   const commentText = req.body.commentText
   const user = req.user.id
   try {
-    const post = await Post.findById(req.body.post)
-    // const targetUser = await User.findById(req.body.targetUser)
+    const post = await Post.findById(req.body.post).populate('user').exec()
     const comment = new Comment({
       commentText: commentText,
       user: user,

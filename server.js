@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/auth', authRouter)
-app.use('/comments', commentsRouter)
+app.use('/posts/:id', commentsRouter)
 app.use('/', indexRouter)
 app.use('/posts', postsRouter)
 app.use('/users', usersRouter)
