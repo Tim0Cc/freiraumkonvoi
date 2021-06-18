@@ -97,5 +97,3 @@ router.delete('/:id', ensureAuthenticated, authRole('admin'), async (req, res) =
 })
 
 module.exports = router
-
-// nur ein Kommentar
