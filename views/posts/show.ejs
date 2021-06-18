@@ -20,6 +20,9 @@
       <%- include('../partials/deleteForm', {url: `/posts/${post.id}` }) %> 
     </div>
   </div>
+  <div class="form-row form-row-end btn-row">
+    <a class="btn btn-primary" href="/post/<%= post.id %>/comment/new">Kommentar verfassen</a>
+  </div>
   <div>
     <div class="form-row-end btn-row">
       <a class="btn btn-primary" href="/posts">Alle Beiträge</a>
