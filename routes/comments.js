@@ -5,19 +5,19 @@ const User = require('../models/user')
 const Comment = require('../models/comment')
 const { ensureAuthenticated, authRole } = require('../config/auth')
 
-router.get('/new', ensureAuthenticated, async (req, res) => {
-  console.log(req.body.post)
-  try {
-    const users = await User.find({})
-    const posts = await Post.find({})
-    const post = req.body.post
-    const comment = new Comment()
-    res.render(`comments/new`, { users, posts, comment })
-  } catch (error) {
-    console.error(error)
-    res.redirect('posts')
-  }
-})
+// router.get('/new', ensureAuthenticated, async (req, res) => {
+//   console.log(req.body.post)
+//   try {
+//     const users = await User.find({})
+//     const posts = await Post.find({})
+//     const post = req.body.post
+//     const comment = new Comment()
+//     res.render(`comments/new`, { users, posts, comment })
+//   } catch (error) {
+//     console.error(error)
+//     res.redirect('posts')
+//   }
+// })
 
 router.post('/', async (req, res) => {
   const commentText = req.body.commentText
@@ -32,7 +32,10 @@ router.post('/', async (req, res) => {
     })
     try {
       await comment.save()
-      res.render('posts/show', { post })
+      const users = await User.find({})
+      const comments = await Comment.find({})
+      const newComment = new Comment()
+      res.render('posts/show', { post, users, comments, newComment })
     } catch (error) {
       console.error(error)
       res.redirect('posts')

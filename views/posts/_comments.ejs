@@ -1,21 +1,22 @@
+<h3>Kommentare:</h3>
 <div>
   <% comments.forEach(comment => { %>
-    <div>
-      <%= comment.text %> 
-    </div>
-    <div>
-      <% users.forEach(user => { %> 
-        <% if(user.id == comment.user) { %>
-          <%= user.name %>-AG  
-        <% } %> 
-      <% }) %> 
-    </div>
+    <% if(post.id == comment.post) { %>
+      <div>
+        <%= comment.commentText %> 
+      </div>
+      <div>
+        <% users.forEach(user => { %> 
+          <% if(user.id == comment.user) { %>
+            <%= user.name %>-AG  
+          <% } %> 
+        <% }) %> 
+      </div>
+    <% } %> 
     <br>
-    <div>    
-      <a class="btn btn-primary" href="/posts/<%= post.id %>">zurück zu <%= post.title %></a>
-    </div>
   <% }) %> 
 </div>
+<h4>Neuen Kommentar hinzufügen</h4>
 <div>
   <form action="/comments" method="POST">
     <div class="form-row">
@@ -26,6 +27,7 @@
     </div>
     <div class="form-row form-row-end btn-row">
       <button class="btn btn-primary" type="submit">kommentieren</button>
-    </div></form>
+    </div>
+  </form>
     <!-- <a class="btn btn-primary" href="/comments/new">Kommentar verfassen</a> -->
-  </div>
+</div>

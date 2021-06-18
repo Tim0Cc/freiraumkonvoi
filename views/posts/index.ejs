@@ -1,21 +1,28 @@
 <h2 class="page-header">Alle Beiträge</h2>
 
+
 <div>
-  <% posts.forEach(post => { %>
-    <div>
-      <% users.forEach(user => { %> 
-        <% if(user.id == post.user) { %>
-         <%= user.name %>-AG  
-        <% } %> 
-      <% }) %> 
-    </div>
-    <br>
-    <div>    
-      <a class="btn btn-primary" href="/posts/<%= post.id %>"><%= post.title %></a>
-    </div>
-  <% }) %> 
-</div>
-<div>
+  <ul>
+    <% posts.forEach(post => { %>
+      <li>
+        <div>
+          <% users.forEach(user => { %> 
+            <% if(user.id == post.user) { %>
+              <div>
+                <%= user.name %>-AG  
+              </div>
+            <% } %> 
+          <% }) %> 
+        </div>
+        <br>
+        <div>    
+          <a class="btn btn-primary" href="/posts/<%= post.id %>"><%= post.title %></a>
+        </div>
+        <br>
+        <br>
+      </li>
+    <% }) %> 
+  </ul>
   <div class="form-row form-row-end btn-row">
     <a class="btn btn-primary" href="/posts/new">neuer Beitrag</a>
   </div>
