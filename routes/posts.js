@@ -2,14 +2,16 @@ const express = require('express')
 const router = express.Router()
 const Post = require('../models/post')
 const User = require('../models/user')
+const Comment = require('../models/comment')
 const { ensureAuthenticated, authRole } = require('../config/auth')
 
 router.get('/', ensureAuthenticated, async (req, res) => {
   try {
     const posts = await Post.find({})
     const users = await User.find({})
+    const comments = await Comment.find({})
     res.render('posts/index', {
-      posts, users
+      posts, users, comments
     })
   } catch (error) {
     res.redirect('/')
@@ -45,7 +47,10 @@ router.post('/', async (req, res) => {
 router.get('/:id', ensureAuthenticated, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id).populate('user').exec()
-    res.render('posts/show', { post })
+    const users = await User.find({})
+    const comments = await Comment.find({})
+    const newComment = new Comment()
+    res.render('posts/show', { post, users, comments, newComment })
   } catch (error) {
     console.error(error)
     res.redirect('/')

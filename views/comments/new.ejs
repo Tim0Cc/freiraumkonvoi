@@ -1,1 +1,11 @@
-<h1>halo</h1>
+<h2 class="page-header">Neuen Kommentar erstellen</h2>
+
+
+<form action="/comments" method="POST">
+  <%- include('_form_fields') %>
+  <div class="form-row form-row-end btn-row">
+    <button class="btn btn-primary" type="submit">Kommentar erstellen</button>
+  </div>
+</form>
+
+<a class="btn btn-primary" href="/posts">Alle Beiträge</a>
