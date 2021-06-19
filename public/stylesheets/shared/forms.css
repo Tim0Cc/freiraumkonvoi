@@ -1,8 +1,8 @@
 :root {
   --form-label-font-size: 1rem;
-  --form-input-background-color: hsl(var(--color-base-hue), 100%, 30%);
-  --form-input-border-color: hsl(var(--color-base-hue), 100%, 50%);
-  --form-input-border-color-light: hsl(var(--color-base-hue), 100%, 90%);
+  --form-input-background-color: hsl(var(--color-base-hue), var(--saturation), 25%);
+  --form-input-border-color: hsl(var(--color-base-hue), var(--saturation), 50%);
+  --form-input-border-color-light: hsl(var(--color-base-hue), var(--saturation), 90%);
 }
 
 .form-row {

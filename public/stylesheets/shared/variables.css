@@ -1,11 +1,12 @@
 :root {
-  --color-base-hue: 180;
+  --color-base-hue: 200;
   --color-danger-hue-offset: 180;
   --color-danger-hue: calc(var(--color-base-hue) - var(--color-danger-hue-offset));
   --color-background-dark: hsl(var(--color-base-hue), 100%, 8%);
-  --color-background-light: hsl(var(--color-base-hue), 100%, 16%);
+  --color-background-light: hsl(var(--color-base-hue), 100%, 24%);
   --color-text-light: hsl(var(--color-base-hue), 100%, 90%);
   --color-text-light-hover: hsl(var(--color-base-hue), 40%, 80%);
+  --saturation: 50%;
 
   --color-border-gray: darkgray;
 
