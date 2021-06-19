@@ -15,6 +15,7 @@ const passport = require('passport')
 require("./config/passport")(passport)
 
 const authRouter = require('./routes/auth')
+const commentsRouter = require('./routes/comments')
 const indexRouter = require('./routes/index')
 const postsRouter = require('./routes/posts')
 const usersRouter = require('./routes/users')
@@ -54,6 +55,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/auth', authRouter)
+app.use('/comments', commentsRouter)
 app.use('/', indexRouter)
 app.use('/posts', postsRouter)
 app.use('/users', usersRouter)
