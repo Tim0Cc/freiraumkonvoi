@@ -17,7 +17,7 @@ module.exports = function(passport) {
           if(isMatch) {
             return done(null, user)
           } else {
-            return done(null, false, { message: 'Passwort stimmt nicht überein'})
+            return done(null, false, {message: 'falsches Passwort'})
           }
         })
       })

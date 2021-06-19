@@ -1,5 +1,5 @@
 :root {
-  --form-label-font-size: 1.2rem;
+  --form-label-font-size: 1rem;
   --form-input-background-color: hsl(var(--color-base-hue), 100%, 30%);
   --form-input-border-color: hsl(var(--color-base-hue), 100%, 50%);
   --form-input-border-color-light: hsl(var(--color-base-hue), 100%, 90%);
@@ -33,7 +33,7 @@
 }
 
 .form-item input::placeholder {
-  color: lightgray;
+  color: var(--color-border-gray);
 }
 
 .form-item input, .form-item select, .form-item textarea {
@@ -54,9 +54,37 @@
 }
 
 .form-item select option {
-  background-color: lightgray;
+  background-color: var(--color-border-gray);
 }
 
 .form-item input:focus, .form-item select:focus, .form-item textarea:focus {
   border-color: var(--form-input-border-color-light);
+}
+
+/* login form */
+
+.form-wrapper {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.form-container {
+  border: 2px solid var(--color-border-gray);
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 1px 1px;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* .auth-form {
+  max-width: 10%;
+} */
+
+.form-link {
+  color: var(--color-text-light)
+}
+
+.form-link:hover {
+  color: var(--color-text-light-hover);
+  transition: var(--hover-transition);
 }
