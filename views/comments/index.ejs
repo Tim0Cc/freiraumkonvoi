@@ -14,7 +14,7 @@
       </div>
       <div class="btn-row">
         <a class="btn btn-primary" href="/posts/<%=post.id%>/comments/<%=comment.id%>/edit">Kommentar bearbeiten</a>
-        <a class="btn btn-primary" href="/posts/<%=post.id%>/comments/<%=comment.id%>">Kommentar löschen</a>
+        <%- include('../partials/deleteForm', {url: `/posts/${post.id}/comments/${comment.id}` }) %> 
       </div>
     <% } %> 
     <br>

@@ -72,6 +72,26 @@ router.put('/comments/:id', async (req, res) => {
 })
 
 // DELETE comment
+router.delete('/comments/:id', ensureAuthenticated, async (req, res) => {
+  let comment
+  try {
+    comment = await Comment.findById(req.params.id)
+    if (req.user.id == comment.user) {
+      await comment.remove()
+      req.flash('success_msg', 'Sie haben den Kommentar erfolgreich entfernt')
+      res.redirect(`/posts/${comment.post}`)
+    } else {
+      req.flash('error_msg', 'Sie sind nicht berechtig kommentare von anderen AGs zu bearbeiten')
+      res.redirect(`/posts/${comment.post}`)  
+    }
+  } catch (error) {
+    console.error(error)
+    if (comment.post != null) {
+      req.flash('error_msg', 'Fehler beim Köschen des Kommentars')
+      res.render('posts/show', { post: comment.post })
+    }
+  }
+})
 
 module.exports = router
 
