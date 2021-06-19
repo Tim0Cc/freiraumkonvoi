@@ -1,0 +1,4 @@
+<h2>Kommentar Bearbeiten</h2>
+<form action="/posts/<%= comment.post %>/comments/<%= comment.id %>?_method=PUT" method="POST">
+  <%- include('_form_fields') %> 
+</form>
