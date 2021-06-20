@@ -1,5 +1,8 @@
+<div>
+  <%- include('_nav_links') %> 
+</div>
 <div class="ag-show-ag-row">
-  <h2 class="page-header"> <%= targetUser.name %> </h2>
+  <h2 class="page-header"> <%= targetUser.name %> - AG </h2>
   <div>
     <%= targetUser.contactMail %> 
   </div>
@@ -14,27 +17,22 @@
   </div>
 </div>
 <div class="ag-show-posts">
-  <div>
-    <h3>Beiträge der AG</h3>
-    
-    <% posts.forEach(post => { %> 
-        <div>
-          <a href="/posts/<%= post.id %> "><%= post.title %></a>
-        </div>
-        <div class="comments-count">
-          <%  let postComments = [] %> 
-          <% postsComments.forEach(postComment => { %>  
-            <% if (postComment.post == post.id) { postComments.push(postComment) }%>
-          <% }) %>
-          Anzahl Kommentare: <%= postComments.length %> 
-        </div>
-    <% }) %>
-  </div>
-  <div>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="/users">zurück zu den AGs</a>
-      <a class="btn btn-primary" href="/users/<%= targetUser.id %>/edit">AG bearbeiten</a>
-      <%- include('../partials/deleteForm', {url: `/users/${targetUser.id}` }) %> 
+  <h3>Beiträge der AG</h3>   
+  <% posts.forEach(post => { %> 
+    <div class="ag-show-post">
+      <div class="ag-post-name">
+        <a href="/posts/<%= post.id %> "><%= post.title %></a>
+      </div>
+      <div class="ag-post-comments-count">
+        <%  let postComments = [] %> 
+        <% postsComments.forEach(postComment => { %>  
+          <% if (postComment.post == post.id) { postComments.push(postComment) }%>
+        <% }) %>
+        Anzahl Kommentare: <%= postComments.length %> 
+      </div>
     </div>
-  </div>
+  <% }) %>
+</div>
+<div>
+  <%- include('_nav_links') %> 
 </div>

@@ -3,3 +3,37 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.ag-show-posts {
+  margin: 2rem 0;
+  border: 2px solid var(--color-border-gray);
+  border-radius: var(--border-radius);
+  box-shadow: inset 0 0 1px 1px;
+  padding: .5rem 1rem 2rem 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.ag-show-post {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* justify-content: space-between; */
+  border-bottom: 1px solid var(--color-border-gray);
+  margin-top: 1.5rem;
+}
+
+.ag-post-name {
+  grid-column: 1;
+}
+
+.ag-post-comments-count {
+  grid-column: 4;
+}
+
+.ag-post-name a {
+  color: var(--color-text-light);
+}
+.ag-post-name a:hover {
+  color: var(--color-text-light-hover);
+  transition: var(--hover-transition);
+}
+

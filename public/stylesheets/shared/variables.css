@@ -9,6 +9,7 @@
   --saturation: 50%;
 
   --color-border-gray: darkgray;
+  --border-radius: .5rem;
 
   --hover-transition: 0.2s ease-in;
 }
