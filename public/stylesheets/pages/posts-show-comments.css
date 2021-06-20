@@ -12,8 +12,8 @@
   padding: 1rem 0;
 }
 
-.comment-container:first-child {
-  border-top: 2px solid var(--color-border-gray);
+.comment-border-top{
+  border-top: 4px solid var(--color-border-gray);
 }
 
 .comments-row {

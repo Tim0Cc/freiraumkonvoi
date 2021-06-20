@@ -20,20 +20,30 @@ router.post('/register', (req, res) => {
   const email = req.body.email
   const password = req.body.password
   const password2 = req.body.password2
-  const role = req.body.role
+  const registerToken = req.body.register_token
+  let role
   let errors = [];
-  if(!name || !email || !password || !password2 || !role) {
+  if(!name || !email || !password || !password2 || !registerToken) {
       errors.push({msg : "Please fill in all fields"})
   }
+  // check register-token
+  if(registerToken === process.env.REGISTER_TOKEN_ADMIN) {
+    role = 'admin'
+  } else if (registerToken === process.env.REGISTER_TOKEN_BASIC) {
+    role = 'basic'
+  } else {
+    errors.push({msg: "Sie benötigen einen Registrierungs-Token um sich registrieren zu können. Bitte wenden Sie sich an den Administrator"})
+  }
+
   //check if match
   if(password !== password2) {
       errors.push({msg : "passwords don't match"});
   }
 
   //check if password is more than 6 characters
-  // if(password.length < 6 ) {
-  //     errors.push({msg : 'password atleast 6 characters'})
-  // }
+  if(password.length < 6 ) {
+      errors.push({msg : 'password at least 6 characters'})
+  }
   if(errors.length > 0 ) {
     res.render('auth/register', {
       errors : errors,
@@ -41,7 +51,7 @@ router.post('/register', (req, res) => {
       email : email,
       password : password,
       password2 : password2,
-      role : role 
+      registerToken : registerToken 
     })
   } else {
     User.findOne({name: name}).exec((err, user) => {

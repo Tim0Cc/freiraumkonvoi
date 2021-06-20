@@ -5,12 +5,13 @@
       <%- include('_form_fields', { textContent: '', buttonText: 'kommentieren' }) %> 
     </form>
   </div>
+  <div class="comment-border-top"></div>
   <h3>Kommentare:</h3>
   <% postComments.forEach(postComment => { %>
     <div class="comment-container">
       <div class="comments-row">
         <div class="comment-date">
-          <% let commentUpdated = comment.updatedAt %> 
+          <% let commentUpdated = postComment.updatedAt %> 
           zuletz geändert: <%= `${commentUpdated.getDate()}.${commentUpdated.getMonth()}.${commentUpdated.getFullYear()}` %>
         </div>
         <div>
@@ -21,7 +22,7 @@
           <% }) %> 
         </div>
         <div class="comment-date">
-          <% let commentCreated = comment.createdAt %> 
+          <% let commentCreated = postComment.createdAt %> 
           erstellt am: <%= `${commentCreated.getDate()}.${commentCreated.getMonth()}.${commentCreated.getFullYear()}` %>
         </div>
       </div>
