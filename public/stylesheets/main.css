@@ -5,6 +5,7 @@
 @import 'shared/buttons.css';
 
 @import 'pages/ags-index.css';
+@import 'pages/ags-show.css';
 
 :root {
   font-family: Arial,sans-serif;

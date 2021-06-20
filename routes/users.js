@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 const Post = require('../models/post')
+const Comment = require('../models/comment')
 const { ensureAuthenticated, authRole } = require('../config/auth')
 const { rawListeners } = require('../models/post')
 
@@ -9,7 +10,6 @@ router.get('/', ensureAuthenticated, async (req, res) => {
   try {
     const targetUsers = await User.find({})
     let posts = await Post.find({}).sort({updatedAt: -1}).exec()
-    console.log(posts)
     res.render('users/index', { targetUsers, posts })
   } catch (error) {
     console.error(error)
@@ -21,7 +21,16 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
   try {
     const targetUser = await User.findById(req.params.id)
     const posts = await Post.find({}).where('user').equals(`${targetUser.id}`).exec()
-    res.render('users/show', { targetUser, posts })
+    const comments = await Comment.find({})
+    let postsComments = []
+    comments.forEach(comment => {
+      posts.forEach(post => {
+        if(post.id == comment.post) {
+          postsComments.push(comment)
+        }
+      })
+    })
+    res.render('users/show', { targetUser, posts, postsComments })
   } catch (error) {
     console.error(error)
     res.redirect('/')
