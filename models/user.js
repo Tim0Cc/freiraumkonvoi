@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
   description: {
     type: String
   },
-  contact: {
+  contactMail: {
     type: String
   },
   statusOfWork: {

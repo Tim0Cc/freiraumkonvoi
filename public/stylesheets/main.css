@@ -4,6 +4,8 @@
 @import 'shared/forms.css';
 @import 'shared/buttons.css';
 
+@import 'pages/ags-index.css';
+
 :root {
   font-family: Arial,sans-serif;
   font-size: 20px;
@@ -21,6 +23,7 @@ body {
 .container {
   max-width: 1200px;
   margin: auto;
+  margin-top: 1rem;
   margin-bottom: 3rem;
 }
 

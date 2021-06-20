@@ -1,0 +1,22 @@
+
+.page-container {
+  margin: 2rem auto;
+}
+
+.ag-container {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border-gray);
+}
+
+.ag-container:first-child {
+  border-top: 1px solid var(--color-border-gray);
+}
+
+.ag-name {
+  margin-top: 1.5rem;
+}
+
+.ag-info-content {
+  margin: 1.5rem 0;
+}

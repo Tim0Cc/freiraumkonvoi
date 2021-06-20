@@ -1,18 +1,37 @@
 <h2 class="page-header">Alle AGs</h2>
-
-<% targetUsers.forEach(targetUser => { %>
-  <div>
-    <div>
-      <a class="btn btn-primary" href="users/<%=targetUser.id%>"><%= targetUser.name %></a>
+<div class="page-container">
+  <% targetUsers.forEach(targetUser => { %>
+    <div class="ag-container">
+      <div class="ag-name">
+        <a class="btn btn-primary" href="users/<%=targetUser.id%>"><%= targetUser.name %></a>
+      </div>
+      <div class="ag-posts">
+        <p>Neueste Beiträge:</p>
+        <% let agPosts = [] %> 
+        <% posts.forEach(post => { %>
+          <% if (post.user == targetUser.id) { %>
+            <% agPosts.push(post) %> 
+          <% } %>
+        <% }) %>
+        <% agPosts.slice(0, 2).forEach(agPost => { %> 
+          <div class="ag-posts-title">
+            <%= agPost.title %>
+          </div>
+          <div class="ag-post-date">
+            <% let postDate = agPost.createdAt %> 
+            Erstellt am: <%= `${postDate.getDate()}.${postDate.getMonth()}.${postDate.getFullYear()}` %>
+          </div>
+        <% }) %> 
+      </div>
+      <div class="ag-info">
+        <div class="ag-info-content">
+          Kontakt: <%= targetUser.contactMail %> 
+        </div>
+        <div class="ag-info-content">
+          <% let agDate = targetUser.registerDate %> 
+          Beigetreten am: <%= `${agDate.getDate()}.${agDate.getMonth()}.${agDate.getFullYear()}` %> 
+        </div>
+      </div>
     </div>
-    <br>
-    Rolle: <%= targetUser.role %>
-    <br>
-    Email: <%= targetUser.email %> 
-    <br>
-    <% let date = targetUser.registerDate %> 
-    Beigetreten am: <%= `${date.getDate()}.${date.getMonth()}.${date.getYear()}` %> 
-  </div>
-  <br>
-  <br>
-<%  })  %> 
+  <%  })  %> 
+</div>

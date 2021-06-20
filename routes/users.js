@@ -8,7 +8,14 @@ const { rawListeners } = require('../models/post')
 router.get('/', ensureAuthenticated, async (req, res) => {
   try {
     const targetUsers = await User.find({})
-    res.render('users/index', { targetUsers })
+    let posts = await Post.find({})
+    posts = posts.sort((a,b) => {
+      if (a.createdAt > b.createdAt) return -1
+      if (a.createdAt < b.createdAt) return 1
+      return 0
+    })
+    console.log(posts)
+    res.render('users/index', { targetUsers, posts })
   } catch (error) {
     console.error(error)
     res.redirect('/')
@@ -45,7 +52,7 @@ router.put('/:id', async (req, res) => {
   try {
     targetUser = await User.findById(req.params.id)
     targetUser.name = req.body.name
-    targetUser.contact = req.body.contact
+    targetUser.contactMail = req.body.contactMail
     targetUser.description = req.body.description
     targetUser.statusOfWork = req.body.statusOfWork
     await targetUser.save()
@@ -76,5 +83,9 @@ router.delete('/:id', ensureAuthenticated, authRole('admin'), async (req, res) =
     }
   }
 })
+
+// helper functions
+
+
 
 module.exports = router
