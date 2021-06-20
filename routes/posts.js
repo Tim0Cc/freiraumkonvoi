@@ -7,11 +7,13 @@ const { ensureAuthenticated, authRole } = require('../config/auth')
 
 router.get('/', ensureAuthenticated, async (req, res) => {
   try {
+    let userRole 
+    if (req.user.role === 'admin') { userRole = true } 
     const posts = await Post.find({}).sort({updatedAt: -1}).exec()
     const users = await User.find({})
     const comments = await Comment.find({})
     res.render('posts/index', {
-      posts, users, comments
+      userRole, posts, users, comments
     })
   } catch (error) {
     res.redirect('/')
@@ -46,6 +48,9 @@ router.post('/', ensureAuthenticated, authRole('admin'), async (req, res) => {
 
 router.get('/:id', ensureAuthenticated, async (req, res) => {
   try {
+    let userRole 
+    if (req.user.role === 'admin') { userRole = true } 
+    const currentUser = req.user
     const post = await Post.findById(req.params.id).populate('user').exec()
     const users = await User.find({})
     const comments = await Comment.find({}).sort({updatedAt: -1}).exec()
@@ -56,7 +61,7 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
       }
     })
     const newComment = new Comment()
-    res.render('posts/show', { post, users, postComments, newComment })
+    res.render('posts/show', { userRole, currentUser, post, users, postComments, newComment })
   } catch (error) {
     console.error(error)
     res.redirect('/')

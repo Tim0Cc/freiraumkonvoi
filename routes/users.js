@@ -19,6 +19,8 @@ router.get('/', ensureAuthenticated, async (req, res) => {
 
 router.get('/:id', ensureAuthenticated, async (req, res) => {
   try {
+    let userRole 
+    if (req.user.role === 'admin') { userRole = true } 
     const targetUser = await User.findById(req.params.id)
     const posts = await Post.find({}).where('user').equals(`${targetUser.id}`).exec()
     const comments = await Comment.find({})
@@ -30,7 +32,7 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
         }
       })
     })
-    res.render('users/show', { targetUser, posts, postComments })
+    res.render('users/show', { userRole, targetUser, posts, postComments })
   } catch (error) {
     console.error(error)
     res.redirect('/')

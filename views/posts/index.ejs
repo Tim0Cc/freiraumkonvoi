@@ -1,6 +1,8 @@
 <h2 class="page-header">Alle Beiträge</h2>
 <div class="form-row btn-row btn-row-end">
-  <a class="btn btn-primary" href="/posts/new">neuer Beitrag</a>
+  <% if (userRole) { %> 
+    <a class="btn btn-primary" href="/posts/new">neuer Beitrag</a>
+  <% } %> 
 </div>
 <div class="page-container">
   <div class="posts-container">

@@ -29,10 +29,12 @@
       <div class="comment-text">
         <%= postComment.commentText %> 
       </div>
-      <div class="btn-row btn-row-end">
-        <a class="btn btn-primary" href="/posts/<%=post.id%>/comments/<%=postComment.id%>/edit">Kommentar bearbeiten</a>
-        <%- include('../partials/deleteForm', {url: `/posts/${post.id}/comments/${postComment.id}` }) %> 
-      </div>
+      <% if (currentUser.id == postComment.user) { %>
+        <div class="btn-row btn-row-end">
+          <a class="btn btn-primary" href="/posts/<%=post.id%>/comments/<%=postComment.id%>/edit">Kommentar bearbeiten</a>
+          <%- include('../partials/deleteForm', {url: `/posts/${post.id}/comments/${postComment.id}` }) %> 
+        </div>
+      <% } %> 
     </div>
   <% }) %> 
 </div>

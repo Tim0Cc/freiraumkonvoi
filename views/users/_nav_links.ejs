@@ -1,7 +1,9 @@
 <div class="btn-row">
   <a class="btn btn-back" href="/users">zurück zu den AGs</a>
   <div class="btn-row btn-row-end">
-    <a class="btn btn-primary" href="/users/<%= targetUser.id %>/edit">AG bearbeiten</a>
-    <%- include('../partials/deleteForm', {url: `/users/${targetUser.id}` }) %> 
+    <% if (userRole) { %> 
+      <a class="btn btn-primary" href="/users/<%= targetUser.id %>/edit">AG bearbeiten</a>
+      <%- include('../partials/deleteForm', {url: `/users/${targetUser.id}` }) %> 
+    <% } %> 
   </div>
 </div>
