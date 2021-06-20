@@ -22,7 +22,7 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     let userRole 
     if (req.user.role === 'admin') { userRole = true } 
     const targetUser = await User.findById(req.params.id)
-    const posts = await Post.find({}).where('user').equals(`${targetUser.id}`).exec()
+    const posts = await Post.find({}).where('user').equals(`${targetUser.id}`).sort({updatedAt: -1}).exec()
     const comments = await Comment.find({})
     let postComments = []
     comments.forEach(comment => {
