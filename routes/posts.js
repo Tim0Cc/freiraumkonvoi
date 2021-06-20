@@ -75,6 +75,7 @@ router.put('/:id', async (req, res) => {
     post.title = req.body.title,
     post.description = req.body.description,
     post.user = req.body.user
+    post.updatedAt = Date.now()
     await post.save()
     res.redirect(`/posts/${post.id}`)
   } catch (error) {

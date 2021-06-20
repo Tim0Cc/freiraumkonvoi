@@ -8,7 +8,7 @@ const { rawListeners } = require('../models/post')
 router.get('/', ensureAuthenticated, async (req, res) => {
   try {
     const targetUsers = await User.find({})
-    let posts = await Post.find({}).sort({createdAt: -1}).exec()
+    let posts = await Post.find({}).sort({updatedAt: -1}).exec()
     console.log(posts)
     res.render('users/index', { targetUsers, posts })
   } catch (error) {
