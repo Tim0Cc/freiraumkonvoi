@@ -1,22 +1,20 @@
 <h3>Kommentare:</h3>
 <div>
-  <% comments.forEach(comment => { %>
-    <% if(post.id == comment.post) { %>
+  <% postComments.forEach(postComment => { %>
       <div>
-        <%= comment.commentText %> 
+        <%= postComment.commentText %> 
       </div>
       <div>
         <% users.forEach(user => { %> 
-          <% if(user.id == comment.user) { %>
+          <% if(user.id == postComment.user) { %>
             <%= user.name %>-AG  
           <% } %> 
         <% }) %> 
       </div>
       <div class="btn-row">
-        <a class="btn btn-primary" href="/posts/<%=post.id%>/comments/<%=comment.id%>/edit">Kommentar bearbeiten</a>
-        <%- include('../partials/deleteForm', {url: `/posts/${post.id}/comments/${comment.id}` }) %> 
+        <a class="btn btn-primary" href="/posts/<%=post.id%>/comments/<%=postComment.id%>/edit">Kommentar bearbeiten</a>
+        <%- include('../partials/deleteForm', {url: `/posts/${post.id}/comments/${postComment.id}` }) %> 
       </div>
-    <% } %> 
     <br>
   <% }) %> 
 </div>

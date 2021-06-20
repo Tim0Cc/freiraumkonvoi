@@ -17,6 +17,10 @@ const CommentSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
     }
 })
 const Comment = mongoose.model('Comment', CommentSchema)

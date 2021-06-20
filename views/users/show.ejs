@@ -25,7 +25,7 @@
       </div>
       <div class="ag-post-comments-count">
         <%  let postComments = [] %> 
-        <% postsComments.forEach(postComment => { %>  
+        <% postComments.forEach(postComment => { %>  
           <% if (postComment.post == post.id) { postComments.push(postComment) }%>
         <% }) %>
         Anzahl Kommentare: <%= postComments.length %> 

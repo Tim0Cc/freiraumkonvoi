@@ -20,8 +20,14 @@ router.post('/', ensureAuthenticated, async (req, res) => {
       await comment.save()
       const users = await User.find({})
       const comments = await Comment.find({})
+      let postComments = []
+      comments.forEach(comment => {
+          if(post.id == comment.post) {
+            postComments.push(comment)
+        }
+      })
       const newComment = new Comment()
-      res.render('posts/show', { post, users, comments, newComment })
+      res.render('posts/show', { post, users, postComments, newComment })
     } catch (error) {
       console.error(error)
       res.redirect('posts')
@@ -53,6 +59,7 @@ router.put('/comments/:id', async (req, res) => {
     const post = await Post.findById(comment.post)
     comment.post = post
     comment.commentText = req.body.commentText
+    comment.updatedAt = Date.now()
     if (req.user.id == comment.user) {
       await comment.save()
       req.flash('success_msg', 'Sie haben den Kommentar erfolgreich geändert')

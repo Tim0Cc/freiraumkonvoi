@@ -22,15 +22,15 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     const targetUser = await User.findById(req.params.id)
     const posts = await Post.find({}).where('user').equals(`${targetUser.id}`).exec()
     const comments = await Comment.find({})
-    let postsComments = []
+    let postComments = []
     comments.forEach(comment => {
       posts.forEach(post => {
         if(post.id == comment.post) {
-          postsComments.push(comment)
+          postComments.push(comment)
         }
       })
     })
-    res.render('users/show', { targetUser, posts, postsComments })
+    res.render('users/show', { targetUser, posts, postComments })
   } catch (error) {
     console.error(error)
     res.redirect('/')
