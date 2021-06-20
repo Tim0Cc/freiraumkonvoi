@@ -1,29 +1,40 @@
 <h2 class="page-header">Alle Beiträge</h2>
-
-
-<div>
-  <ul>
+<div class="form-row btn-row btn-row-end">
+  <a class="btn btn-primary" href="/posts/new">neuer Beitrag</a>
+</div>
+<div class="page-container">
+  <div class="posts-container">
+    <div class="post-container post-header">
+      <div class="post-title">neueste Beiträge</div>
+      <div class="post-ag">AG</div>
+      <div class="post-container-info">Beitrags-Info</div>
+    </div>
     <% posts.forEach(post => { %>
-      <li>
-        <div>
-          <% users.forEach(user => { %> 
-            <% if(user.id == post.user) { %>
-              <div>
-                <%= user.name %>-AG  
-              </div>
-            <% } %> 
-          <% }) %> 
-        </div>
-        <br>
-        <div>    
+      <div class="post-container">
+        <div class="post-title">    
           <a class="btn btn-primary" href="/posts/<%= post.id %>"><%= post.title %></a>
         </div>
-        <br>
-        <br>
-      </li>
+        <% users.forEach(user => { %> 
+          <% if(user.id == post.user) { %>
+            <div class="post-ag">
+              <%= user.name %>-AG  
+            </div>
+          <% } %> 
+        <% }) %>
+        <div class="post-container-info">
+          <div class="post-content">
+            <% let postUpdated = post.updatedAt %> 
+            zul. geändert: <%= `${postUpdated.getDate()}.${postUpdated.getMonth()}.${postUpdated.getFullYear()}` %>
+          </div>
+          <div class="post-content">
+            <% let postCreated = post.createdAt %> 
+            erstellt am: <%= `${postCreated.getDate()}.${postCreated.getMonth()}.${postCreated.getFullYear()}` %>
+          </div>
+        </div> 
+      </div>
     <% }) %> 
-  </ul>
-  <div class="form-row form-row-end btn-row">
+  </div>
+  <div class="form-row btn-row btn-row-end">
     <a class="btn btn-primary" href="/posts/new">neuer Beitrag</a>
   </div>
 </div>

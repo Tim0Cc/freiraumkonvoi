@@ -7,7 +7,7 @@ const { ensureAuthenticated, authRole } = require('../config/auth')
 
 router.get('/', ensureAuthenticated, async (req, res) => {
   try {
-    const posts = await Post.find({})
+    const posts = await Post.find({}).sort({updatedAt: -1}).exec()
     const users = await User.find({})
     const comments = await Comment.find({})
     res.render('posts/index', {
