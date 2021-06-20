@@ -1,9 +1,11 @@
 <div class="form-row">
-  <label for="commentText"></label>
-  <textarea name="commentText"></textarea>
-  <input type="hidden" name="post" value="<%= post.id %>">
-  <input type="hidden" name="targetUser" value="<%= post.user.id %>">
+  <div class="form-item">
+    <label for="commentText"></label>
+    <textarea name="commentText"></textarea>
+    <input type="hidden" name="post" value="<%= post.id %>">
+    <input type="hidden" name="targetUser" value="<%= post.user.id %>">
+  </div>
 </div>
-<div class="form-row form-row-end btn-row">
+<div class="form-row form-row-end btn-row btn-row-end">
   <button class="btn btn-primary" type="submit">kommentieren</button>
 </div>

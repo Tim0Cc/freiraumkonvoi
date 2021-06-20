@@ -1,26 +1,37 @@
-<h3>Kommentare:</h3>
-<div>
+<div class="comments-container">
+  <div>
+    <h4>Neuen Kommentar hinzufügen</h4>
+    <form action="/posts/<%=post.id%>" method="POST">
+      <%- include('_form_fields') %> 
+    </form>
+  </div>
+  <h3>Kommentare:</h3>
   <% postComments.forEach(postComment => { %>
-      <div>
+    <div class="comment-container">
+      <div class="comments-row">
+        <div class="comment-date">
+          <% let commentUpdated = comment.updatedAt %> 
+          zuletz geändert: <%= `${commentUpdated.getDate()}.${commentUpdated.getMonth()}.${commentUpdated.getFullYear()}` %>
+        </div>
+        <div>
+          <% users.forEach(user => { %> 
+            <% if(user.id == postComment.user) { %>
+              von <%= user.name %>-AG  
+            <% } %> 
+          <% }) %> 
+        </div>
+        <div class="comment-date">
+          <% let commentCreated = comment.createdAt %> 
+          erstellt am: <%= `${commentCreated.getDate()}.${commentCreated.getMonth()}.${commentCreated.getFullYear()}` %>
+        </div>
+      </div>
+      <div class="comment-text">
         <%= postComment.commentText %> 
       </div>
-      <div>
-        <% users.forEach(user => { %> 
-          <% if(user.id == postComment.user) { %>
-            <%= user.name %>-AG  
-          <% } %> 
-        <% }) %> 
-      </div>
-      <div class="btn-row">
+      <div class="btn-row btn-row-end">
         <a class="btn btn-primary" href="/posts/<%=post.id%>/comments/<%=postComment.id%>/edit">Kommentar bearbeiten</a>
         <%- include('../partials/deleteForm', {url: `/posts/${post.id}/comments/${postComment.id}` }) %> 
       </div>
-    <br>
+    </div>
   <% }) %> 
-</div>
-<h4>Neuen Kommentar hinzufügen</h4>
-<div>
-  <form action="/posts/<%=post.id%>" method="POST">
-    <%- include('_form_fields') %> 
-  </form>
 </div>

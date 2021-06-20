@@ -1,7 +1,10 @@
 <div class="btn-row">
-  <a class="btn btn-back" href="/users/<%= post.user %>">zur <%= post.user.name %> - AG </a>
+  <div>
+    <a class="btn btn-primary" href="/posts">Alle Beiträge</a>
+    <a class="btn btn-back" href="/users/<%= post.user %>">zur <%= post.user.name %> - AG </a>
+  </div>
   <div class="btn-row btn-row-end">
-    <a class="btn btn-primary" href="/posts/<%= post.id %>/edit">Bearbeiten</a>
+    <a class="btn btn-primary" href="/posts/<%= post.id %>/edit">Beitrag bearbeiten</a>
     <%- include('../partials/deleteForm', {url: `/posts/${post.id}` }) %> 
   </div>
 </div>

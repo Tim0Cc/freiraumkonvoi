@@ -19,7 +19,7 @@ router.post('/', ensureAuthenticated, async (req, res) => {
     try {
       await comment.save()
       const users = await User.find({})
-      const comments = await Comment.find({})
+      const comments = await Comment.find({}).sort({updatedAt: -1}).exec()
       let postComments = []
       comments.forEach(comment => {
           if(post.id == comment.post) {
