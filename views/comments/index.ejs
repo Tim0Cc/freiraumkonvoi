@@ -2,7 +2,7 @@
   <div>
     <h4>Neuen Kommentar hinzufügen</h4>
     <form action="/posts/<%=post.id%>" method="POST">
-      <%- include('_form_fields') %> 
+      <%- include('_form_fields', { textContent: '', buttonText: 'kommentieren' }) %> 
     </form>
   </div>
   <h3>Kommentare:</h3>

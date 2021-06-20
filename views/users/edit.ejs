@@ -1,40 +1,32 @@
 <h2 class="page-header">Die AG <%= targetUser.name %> Bearbeiten</h2>
-
-<form action="/users/<%= targetUser.id %>?_method=PUT" method="POST">
-  <div class="form-row">
-    <div class="form-item">
-      <div>
+<div class="form-container">
+  <form action="/users/<%= targetUser.id %>?_method=PUT" method="POST">
+    <div class="form-row">
+      <div class="form-item">
         <label for="name">AG-Name</label>
         <input type="text" name="name" value ="<%= targetUser.name %>">
       </div>
-    </div>
-    <div class="form-item">
-      <div>
+      <div class="form-item">
         <label for="contactMail">Kontakt-email</label>
         <input type="text" name="contactMail" value="<%= targetUser.contactMail %>">
       </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-item">
-      <div>
+    <div class="form-row">
+      <div class="form-item">
         <label for="description">Beschreibung</label>
-        <textarea name="description" id=""></textarea><%= targetUser.description %></textarea>
+        <textarea class="textarea-big" name="description" id=""><%= targetUser.description %></textarea>
       </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="form-item">
-      <div>
+    <div class="form-row">
+      <div class="form-item">
         <label for="statusOfWork">Arbeitsstand</label>
-        <textarea name="statusOfWork"><%= targetUser.statusOfWork %></textarea>
-      </div>
-    <div>
-  </div>
-  <div>
-    <div class="form-row form-row-end btn-row">
+        <textarea class="textarea-big" name="statusOfWork"><%= targetUser.statusOfWork %></textarea>
+      <div>
+    </div>
+    <br>
+    <div class="form-row btn-row btn-row-end">
       <a class="btn btn-danger" href="/users/<%= targetUser.id %>">abbrechen</a>
       <button class="btn btn-primary" type="submit">AG aktualisieren</button>
     </div>
-  </div>
-</form>
+  </form>
+</div>

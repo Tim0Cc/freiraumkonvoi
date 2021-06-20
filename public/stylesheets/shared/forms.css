@@ -49,8 +49,12 @@
 }
 
 .form-item textarea {
-  height: 100%;
   resize: none;
+  height: 5rem;
+}
+
+.form-item .textarea-big {
+  height: 15rem;
 }
 
 .form-item select option {
