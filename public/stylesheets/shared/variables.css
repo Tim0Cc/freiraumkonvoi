@@ -1,5 +1,7 @@
 :root {
   --color-base-hue: 200;
+  --color-back-hue-offset: 90;
+  --color-back-hue: calc(var(--color-base-hue) - var(--color-back-hue-offset));
   --color-danger-hue-offset: 180;
   --color-danger-hue: calc(var(--color-base-hue) - var(--color-danger-hue-offset));
   --color-background-dark: hsl(var(--color-base-hue), 100%, 8%);

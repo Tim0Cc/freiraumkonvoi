@@ -1,28 +1,31 @@
-<h2 class="page-header">
-  <strong><em><%= post.user.name %></em></strong>-AG
-</h2>
-<div>
+<h3 class="page-header"><%= post.user.name %> - AG</h3>
+<div class="posts-show-container">
+  <div class="post-info">
+    <div class="ag-post-date">
+      <% let postUpdated = post.updatedAt %> 
+      zuletz geändert: <%= `${postUpdated.getDate()}.${postUpdated.getMonth()}.${postUpdated.getFullYear()}` %>
+    </div>
+    <div class="ag-post-date">
+      <% let postCreated = post.createdAt %> 
+      erstellt am: <%= `${postCreated.getDate()}.${postCreated.getMonth()}.${postCreated.getFullYear()}` %>
+    </div>
+  </div>
   <div>
-    <h3><%= post.title %></h3>  
+    <h2><%= post.title %></h2>  
   </div>
   <div>
     <%= post.description %> 
   </div>
+  <br>
+  <%- include('_nav_links') %>
 </div>
 <br>
 <div>
-  <div class="btn-row">
-    <div>
-      <a class="btn btn-primary" href="/posts/<%= post.id %>/edit">Bearbeiten</a>
-      <br>
-      <br>
-      <%- include('../partials/deleteForm', {url: `/posts/${post.id}` }) %> 
-    </div>
-  </div>
-    <%- include('../comments/index') %> 
+  <%- include('../comments/index') %> 
   <div>
     <div class="form-row-end btn-row">
       <a class="btn btn-primary" href="/posts">Alle Beiträge</a>
     </div>
   </div>
 </div>
+<%- include('_nav_links') %>

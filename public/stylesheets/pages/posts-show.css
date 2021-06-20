@@ -1,0 +1,13 @@
+.posts-show-container {
+  margin: 2rem 0;
+  border: 2px solid var(--color-border-gray);
+  border-radius: var(--border-radius);
+  box-shadow: inset 0 0 1px 1px;
+  padding: .5rem 1rem 2rem 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.post-info {
+  display: flex;
+  justify-content: space-between;
+}

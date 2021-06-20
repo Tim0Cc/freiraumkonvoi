@@ -3,12 +3,18 @@
   --color-btn-primary-background-dark: hsl(var(--color-base-hue), 100%, 80%);
   --color-btn-primary-text: hsl(var(--color-base-hue), 100%, 20%);
   --color-btn-primary-text-dark: hsl(var(--color-base-hue), 100%, 10%);
-  --color-btn-border: black;
 
+  --color-btn-back-background: hsl(var(--color-back-hue), 100%, 90%);
+  --color-btn-back-background-dark: hsl(var(--color-back-hue), 100%, 80%);
+  --color-btn-back-text: hsl(var(--color-back-hue), 100%, 20%);
+  --color-btn-back-text-dark: hsl(var(--color-back-hue), 100%, 10%);
+  
   --color-btn-danger-background: hsl(var(--color-danger-hue), 100%, 90%);
   --color-btn-danger-background-dark: hsl(var(--color-danger-hue), 100%, 80%);
   --color-btn-danger-text: hsl(var(--color-danger-hue), 100%, 20%);
   --color-btn-danger-text-dark: hsl(var(--color-danger-hue), 100%, 10%);
+  
+  --color-btn-border: black;
 }
 
 .btn {
@@ -48,6 +54,17 @@
 .btn-primary:hover {
   color: var(--color-btn-primary-text-dark);
   background-color: var(--color-btn-primary-background-dark);
+  transition: var(--hover-transition)
+}
+
+.btn-back {
+  color: var(--color-btn-back-text);
+  background-color: var(--color-btn-back-background);
+}
+
+.btn-back:hover {
+  color: var(--color-btn-back-text-dark);
+  background-color: var(--color-btn-back-background-dark);
   transition: var(--hover-transition)
 }
 
