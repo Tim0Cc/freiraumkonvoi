@@ -15,7 +15,7 @@
         <% }) %>
         <% agPosts.slice(0, 2).forEach(agPost => { %> 
           <div class="ag-posts-title">
-            <%= agPost.title %>
+            <a href="/posts/<%= agPost.id %>"><%= agPost.title %></a>
           </div>
           <div class="ag-post-date">
             <% let postDate = agPost.createdAt %> 
