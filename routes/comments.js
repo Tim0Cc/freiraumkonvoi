@@ -51,7 +51,7 @@ router.get('/comments/:id/edit', ensureAuthenticated, async (req, res) => {
 })
 
 // UPDATE comment
-router.put('/comments/:id', async (req, res) => {
+router.put('/comments/:id', ensureAuthenticated, async (req, res) => {
   let comment
   try {
     comment = await Comment.findById(req.params.id)

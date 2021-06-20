@@ -51,7 +51,7 @@ router.get('/:id/edit', ensureAuthenticated, authRole('admin'), async (req, res)
   }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', authRole('admin'), async (req, res) => {
   let targetUser
   try {
     targetUser = await User.findById(req.params.id)

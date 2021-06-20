@@ -29,7 +29,7 @@ router.get('/new', ensureAuthenticated, authRole('admin'), async (req, res) => {
   }
 })
 
-router.post('/', async (req, res) => {
+router.post('/', ensureAuthenticated, authRole('admin'), async (req, res) => {
   const post = new Post({
     title: req.body.title,
     description: req.body.description,
@@ -74,7 +74,7 @@ router.get('/:id/edit', ensureAuthenticated, authRole('admin'), async (req, res)
   }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', ensureAuthenticated, authRole('admin'), async (req, res) => {
   let post
   try {
     post = await Post.findById(req.params.id)
