@@ -1,7 +1,7 @@
 <!-- from router/auth.js -->
 <% if(typeof errors!= 'undefined') { %>
   <% errors.forEach(function(error){ %>
-    <div class="messages">
+    <div class="messages messages-danger">
       <p> <%= error.msg %></p>
     </div>
     <% }) %>
@@ -9,17 +9,17 @@
   <!-- from flash -->
   
   <% if(success_msg != '') { %>
-    <div class="messages">
+    <div class="messages messages-success">
       <%= success_msg %>
     </div>
   <% } %>
   <% if(error_msg != '') { %>
-    <div class="messages">
+    <div class="messages messages-danger">
       <%= error_msg %>
     </div>
   <% } %> 
   <% if(error != '') { %>
-    <div class="messages">
+    <div class="messages messages-danger">
      <%= error %>
     </div>
   <% } %>
