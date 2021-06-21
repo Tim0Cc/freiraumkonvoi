@@ -27,4 +27,12 @@ router.get('/admindashboard', ensureAuthenticated, authRole('admin'), (req,res) 
   })
 })
 
+router.get('/datenschutz', (req, res) => {
+  res.render('../public/pages/datenschutz')
+})
+
+router.get('/impressum', (req, res) => {
+  res.render('../public/pages/impressum')
+})
+
 module.exports = router

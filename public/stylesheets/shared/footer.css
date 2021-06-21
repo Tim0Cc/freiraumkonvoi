@@ -1,0 +1,23 @@
+footer {
+}
+
+footer ul {
+  display: flex;
+  margin-bottom: 0;
+}
+
+footer ul li {
+  margin: 2rem;
+  list-style-type: none;
+}
+
+footer ul li a {
+  font-size: .8rem;
+  color: var(--color-text-light);
+  text-decoration: none;
+}
+
+footer ul li a:hover {
+  color: var(--color-text-light-hover);
+  transition: var(--hover-transition);
+}

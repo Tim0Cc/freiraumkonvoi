@@ -1,6 +1,7 @@
 @import 'shared/variables.css';
 @import 'shared/fonts.css';
 @import 'shared/header.css';
+@import 'shared/footer.css';
 @import 'shared/forms.css';
 @import 'shared/buttons.css';
 
@@ -22,6 +23,7 @@
 
 body {
   background: linear-gradient(to right, var(--color-background-dark), var(--color-background-light));
+  margin: 0;
 }
 
 .container {
