@@ -2,7 +2,7 @@
   "name": "frei_raum_convoy",
   "version": "1.0.0",
   "description": "intranet service for non-profit organisation",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "devStart": "nodemon server.js"
   },
