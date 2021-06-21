@@ -1,0 +1,10 @@
+.messages {
+  color: var(--color-btn-back-text-dark);
+  font-weight: bold;
+  margin: 2rem 0;
+  border: 2px solid var(--color-btn-back-background-dark);
+  border-radius: var(--border-radius);
+  box-shadow: inset 0 0 1px 1px;
+  padding: .5rem 1rem;
+  background-color: var(--color-btn-back-background);
+}

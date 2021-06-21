@@ -4,6 +4,7 @@
 @import 'shared/footer.css';
 @import 'shared/forms.css';
 @import 'shared/buttons.css';
+@import 'shared/messages.css';
 
 @import 'pages/ags-index.css';
 @import 'pages/ags-show.css';

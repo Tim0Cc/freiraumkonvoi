@@ -1,16 +1,25 @@
 <!-- from router/auth.js -->
 <% if(typeof errors!= 'undefined') { %>
   <% errors.forEach(function(error){ %>
-    <p> <%= error.msg %></p>
-  <% }) %>
+    <div class="messages">
+      <p> <%= error.msg %></p>
+    </div>
+    <% }) %>
 <% } %>
-<!-- from flash -->
-<% if(success_msg != '') { %>
-  <%= success_msg %>
-<% } %>
-<% if(error_msg != '') { %>
-  <%= error_msg %> 
-<% } %> 
-<% if(error != '') { %>
-  <%= error %>
-<% } %>
+  <!-- from flash -->
+  
+  <% if(success_msg != '') { %>
+    <div class="messages">
+      <%= success_msg %>
+    </div>
+  <% } %>
+  <% if(error_msg != '') { %>
+    <div class="messages">
+      <%= error_msg %>
+    </div>
+  <% } %> 
+  <% if(error != '') { %>
+    <div class="messages">
+     <%= error %>
+    </div>
+  <% } %>
