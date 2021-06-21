@@ -10,7 +10,6 @@ router.post('/', ensureAuthenticated, async (req, res) => {
   let userRole 
   if (req.user.role === 'admin') { userRole = true } 
   const currentUser = req.user
-  console.log(currentUser)
   const commentText = req.body.commentText
   const user = req.user.id
   try {
@@ -29,7 +28,6 @@ router.post('/', ensureAuthenticated, async (req, res) => {
           postComments.push(comment)
         }
       })
-      console.log(postComments)
       if (postComments.some(postComment => postComment.user == currentUser.id)) {
         req.flash('error_msg', 'Sie haben diesen Beitrag bereits kommentiert. Es ist nur ein Kommentar pro Beitrag pro AG erlaubt. Bitte bearbeiten Sie Ihren ursprünglichen Kommentar oder wenden Sie sich direkt an die AG über den hinterlegten Kontakt.')
         return res.redirect(`/posts/${post.id}`)  
