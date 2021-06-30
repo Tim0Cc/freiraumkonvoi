@@ -3,6 +3,11 @@ const router = express.Router()
 const User = require('../models/user')
 const { ensureAuthenticated, authRole } = require('../config/auth') 
 
+// Welcome page
+router.get('/', (req, res) => {
+  res.render('index')
+})
+
 //dashboard page
 router.get('/dashboard', ensureAuthenticated, (req,res) => {
   res.render('users/dashboard', {
