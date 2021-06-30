@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-
 const PostSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -20,7 +19,7 @@ const PostSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
     default: Date.now
-  },
+  }
 })
 
 const Post = mongoose.model('Post', PostSchema)

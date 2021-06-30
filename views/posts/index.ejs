@@ -1,15 +1,15 @@
-<h2 class="page-header">Alle Protokolle</h2>
+<h2 class="page-header">Alle Beiträge</h2>
 <div class="form-row btn-row btn-row-end">
-
-    <a class="btn btn-primary" href="/posts/new">neues Protokoll erstellen</a>
-
+  <% if (userRole) { %> 
+    <a class="btn btn-primary" href="/posts/new">neuer Beitrag</a>
+  <% } %> 
 </div>
 <div class="page-container">
   <div class="posts-container">
     <div class="post-container post-header">
-      <div class="post-title">neueste Protokolle</div>
+      <div class="post-title">neueste Beiträge</div>
       <div class="post-ag">AG</div>
-      <div class="post-container-info">Info</div>
+      <div class="post-container-info">Beitrags-Info</div>
     </div>
     <% posts.forEach(post => { %>
       <div class="post-container">
@@ -37,6 +37,6 @@
     <% }) %> 
   </div>
   <div class="form-row btn-row btn-row-end">
-    <a class="btn btn-primary" href="/posts/new">neues Protokoll erstellen</a>
+    <a class="btn btn-primary" href="/posts/new">neuer Beitrag</a>
   </div>
 </div>

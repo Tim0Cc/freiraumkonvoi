@@ -17,7 +17,7 @@
   </div>
 </div>
 <div class="ag-show-posts">
-  <h3>Protokolle der <%= targetUser.name %> - AG</h3>   
+  <h3>Beiträge der AG</h3>   
   <% posts.forEach(post => { %> 
     <div class="ag-show-post">
       <div class="ag-post-name">
@@ -25,10 +25,10 @@
       </div>
       <div class="ag-post-comments-count">
         <%  let postComments = [] %> 
-        <% postsComments.forEach(postsComment => { %>  
-          <% if (postsComment.post == post.id) { postComments.push(postsComment) }%>
+        <% postComments.forEach(postComment => { %>  
+          <% if (postComment.post == post.id) { postComments.push(postComment) }%>
         <% }) %>
-        Kommentare: <%= postComments.length %> 
+        Anzahl Kommentare: <%= postComments.length %> 
       </div>
     </div>
   <% }) %>

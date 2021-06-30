@@ -20,7 +20,7 @@ const indexRouter = require('./routes/index')
 const postsRouter = require('./routes/posts')
 const usersRouter = require('./routes/users')
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Database'))

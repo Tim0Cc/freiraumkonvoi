@@ -6,8 +6,22 @@
 </div>
 <div class="form-row">
   <div class="form-item">
+    <label for="user">AG</label>
+    <select name="user" id="">
+      <% users.forEach(user => { %>
+        <% if (user.id == post.user) { %>
+          <option selected label="<%= user.name %>" value="<%= user.id %>">
+        <% } else { %> 
+          <option label="<%= user.name %>" value="<%=user.id%>">
+        <% } %> 
+      <% }) %> 
+    </select>
+  </div>
+</div>
+<div class="form-row">
+  <div class="form-item">
     <label for="description">Beschreibung</label>
-    <textarea class="textarea-big" name="description" cols="80" wrap="hard"><%= post.description %></textarea>
+    <textarea class="textarea-big" name="description"><%= post.description %></textarea>
   </div>
 </div>
 

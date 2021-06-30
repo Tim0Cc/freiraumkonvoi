@@ -1,11 +1,11 @@
 <div class="btn-row">
   <div>
-    <a class="btn btn-primary" href="/posts">Alle Protokolle</a>
+    <a class="btn btn-primary" href="/posts">Alle Beiträge</a>
     <a class="btn btn-back" href="/users/<%= post.user.id %>">zur <%= post.user.name %> - AG</a>
   </div>
   <div class="btn-row btn-row-end">
-    <% if (userAuth) { %> 
-      <a class="btn btn-primary" href="/posts/<%= post.id %>/edit">Protokoll bearbeiten</a>
+    <% if (userRole) { %> 
+      <a class="btn btn-primary" href="/posts/<%= post.id %>/edit">Beitrag bearbeiten</a>
       <%- include('../partials/deleteForm', {url: `/posts/${post.id}` }) %> 
     <% } %> 
   </div>

@@ -2,7 +2,7 @@
 <div class="page-container">
   <div class="ag-container ag-header">
     <div class="ag-name">AG</div>
-    <div class="ag-posts">Arbeitsstand / Entscheidungen</div>
+    <div class="ag-posts">neueste Beiträge / zuletzt geändert</div>
     <div class="ag-info">AG-Info</div>
   </div>
   <% targetUsers.forEach(targetUser => { %>
@@ -11,7 +11,23 @@
         <a class="btn btn-primary" href="users/<%=targetUser.id%>"><%= targetUser.name %></a>
       </div>
       <div class="ag-posts">
-        <%= targetUser.statusOfWork  %> 
+        <% let agPosts = [] %> 
+        <% posts.forEach(post => { %>
+          <% if (post.user == targetUser.id) { %>
+            <% agPosts.push(post) %> 
+          <% } %>
+        <% }) %>
+        <% agPosts.slice(0, 2).forEach(agPost => { %>
+          <div class="ag-posts-content">
+            <div class="ag-posts-title">
+              <a href="/posts/<%= agPost.id %>"><%= agPost.title %></a>
+            </div>
+            <div class="ag-post-date">
+              <% let postDate = agPost.updatedAt %> 
+              Erstellt am: <%= `${postDate.getDate()}.${postDate.getMonth()}.${postDate.getFullYear()}` %>
+            </div>
+          </div>
+        <% }) %> 
       </div>
       <div class="ag-info">
         <div class="ag-info-content">
@@ -19,7 +35,7 @@
         </div>
         <div class="ag-info-content">
           <% let agDate = targetUser.registerDate %> 
-          letztes Protokoll: <%= `${agDate.getDate()}.${agDate.getMonth()}.${agDate.getFullYear()}` %> 
+          Beigetreten am: <%= `${agDate.getDate()}.${agDate.getMonth()}.${agDate.getFullYear()}` %> 
         </div>
       </div>
     </div>

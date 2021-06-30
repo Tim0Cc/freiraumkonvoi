@@ -23,24 +23,22 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     const targetUser = await User.findById(req.params.id)
     const posts = await Post.find({}).where('user').equals(`${targetUser.id}`).sort({updatedAt: -1}).exec()
     const comments = await Comment.find({})
-    let postsComments = []
+    let postComments = []
     comments.forEach(comment => {
       posts.forEach(post => {
         if(post.id == comment.post) {
-          postsComments.push(comment)
+          postComments.push(comment)
         }
       })
     })
-    let userAuth = false
-    if(req.user.id == targetUser.id) { userAuth = true }
-    res.render('users/show', { userRole, targetUser, posts, postsComments, userAuth })
+    res.render('users/show', { userRole, targetUser, posts, postComments })
   } catch (error) {
     console.error(error)
     res.redirect('/')
   }
 })
 
-router.get('/:id/edit', ensureAuthenticated, async (req, res) => {
+router.get('/:id/edit', ensureAuthenticated, authRole('admin'), async (req, res) => {
   try {
     const targetUser = await User.findById(req.params.id)
     res.render('users/edit', { targetUser })
@@ -54,7 +52,7 @@ router.get('/:id/edit', ensureAuthenticated, async (req, res) => {
   }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', authRole('admin'), async (req, res) => {
   let targetUser
   try {
     targetUser = await User.findById(req.params.id)
@@ -90,5 +88,9 @@ router.delete('/:id', ensureAuthenticated, authRole('admin'), async (req, res) =
     }
   }
 })
+
+// helper functions
+
+
 
 module.exports = router
