@@ -11,12 +11,11 @@ router.post('/', ensureAuthenticated, async (req, res) => {
   if (req.user.role === 'admin') { userRole = true } 
   const currentUser = req.user
   const commentText = req.body.commentText
-  const user = req.user.id
   try {
     const post = await Post.findById(req.body.post).populate('user').exec()
     comment = new Comment({
       commentText: commentText,
-      user: user,
+      user: currentUser.id,
       post: post
     })
     try {
@@ -67,7 +66,6 @@ router.put('/comments/:id', ensureAuthenticated, async (req, res) => {
   let comment
   try {
     comment = await Comment.findById(req.params.id)
-    // comment.user = await User.findById(req.user.id)
     const post = await Post.findById(comment.post)
     comment.post = post
     comment.commentText = req.body.commentText
@@ -82,11 +80,7 @@ router.put('/comments/:id', ensureAuthenticated, async (req, res) => {
     }
   } catch (error) {
     console.error(error)
-    // if (comment != null) {
-    //   render(`posts/${post.id}`, { post })
-    // } else {
     res.redirect('/')
-    // }
   }
 })
 
