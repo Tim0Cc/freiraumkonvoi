@@ -35,8 +35,11 @@ router.post('/', ensureAuthenticated, async (req, res) => {
         thisComment = await comment.save()
         postComments.unshift(thisComment)
       }
+      let commentAuth = false
+      if(currentUser.id == comment.user.id) { commentAuth = true }
       const newComment = new Comment()
-      res.render('posts/show', { userRole, currentUser, post, users, postComments, newComment })
+      let userAuth = true
+      res.render('posts/show', { userRole, currentUser, post, users, postComments, newComment, commentAuth, userAuth })
     } catch (error) {
       console.error(error)
       res.redirect('posts')

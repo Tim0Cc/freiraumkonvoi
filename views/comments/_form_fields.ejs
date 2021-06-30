@@ -1,7 +1,7 @@
 <div class="form-row">
   <div class="form-item">
     <label for="commentText"></label>
-    <textarea name="commentText"><%= textContent %></textarea>
+    <textarea name="commentText" cols="80" wrap="hard"><%= textContent %></textarea>
     <input type="hidden" name="post" value="<%= post.id %>">
     <input type="hidden" name="targetUser" value="<%= post.user.id %>">
   </div>
