@@ -100,13 +100,6 @@ router.post('/login', (req, res, next) => {
   .then((user) => {
     let path = '/dashboard'
     return path
-    // if (user != null) {
-    //   if (user.role === 'admin') {
-    //     return path = '/admindashboard'
-    //   } else {
-    //     return path = '/dashboard'
-    //   }
-    // }
   })
   .then((path) => {
     passport.authenticate('local', {

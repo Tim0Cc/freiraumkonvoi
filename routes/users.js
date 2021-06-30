@@ -19,7 +19,7 @@ router.get('/', ensureAuthenticated, async (req, res) => {
 router.get('/:id', ensureAuthenticated, async (req, res) => {
   try {
     let userRole 
-    if (req.user.role === 'admin') { userRole = true } 
+    // if (req.user.role === 'admin') { userRole = true } 
     const targetUser = await User.findById(req.params.id)
     const posts = await Post.find({}).where('user').equals(`${targetUser.id}`).sort({updatedAt: -1}).exec()
     const comments = await Comment.find({})
@@ -33,7 +33,7 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     })
     let userAuth = false
     if(req.user.id == targetUser.id) { userAuth = true }
-    res.render('users/show', { userRole, targetUser, posts, postsComments, userAuth })
+    res.render('users/show', { targetUser, posts, postsComments, userAuth })
   } catch (error) {
     console.error(error)
     res.redirect('/')
