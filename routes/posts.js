@@ -20,7 +20,7 @@ router.get('/', ensureAuthenticated, async (req, res) => {
   }
 })
 
-router.get('/new', ensureAuthenticated, authRole('admin'), async (req, res) => {
+router.get('/new', ensureAuthenticated, async (req, res) => {
   try {
     const users = await User.find({})
     const post = new Post()
@@ -31,11 +31,11 @@ router.get('/new', ensureAuthenticated, authRole('admin'), async (req, res) => {
   }
 })
 
-router.post('/', ensureAuthenticated, authRole('admin'), async (req, res) => {
+router.post('/', ensureAuthenticated, async (req, res) => {
   const post = new Post({
     title: req.body.title,
     description: req.body.description,
-    user: req.body.user
+    user: req.user,
   })
   try {
     await post.save()
@@ -47,6 +47,7 @@ router.post('/', ensureAuthenticated, authRole('admin'), async (req, res) => {
 })
 
 router.get('/:id', ensureAuthenticated, async (req, res) => {
+  let userAuth = false
   try {
     let userRole 
     if (req.user.role === 'admin') { userRole = true } 
@@ -60,15 +61,16 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
           postComments.push(comment)
       }
     })
+    if(currentUser.id == post.user.id) { userAuth = true }
     const newComment = new Comment()
-    res.render('posts/show', { userRole, currentUser, post, users, postComments, newComment })
+    res.render('posts/show', { userRole, currentUser, post, users, postComments, newComment, userAuth })
   } catch (error) {
     console.error(error)
     res.redirect('/')
   }
 })
 
-router.get('/:id/edit', ensureAuthenticated, authRole('admin'), async (req, res) => {
+router.get('/:id/edit', ensureAuthenticated, async (req, res) => {
   try {
     const users = await User.find({})
     const post = await Post.findById(req.params.id)
@@ -79,13 +81,13 @@ router.get('/:id/edit', ensureAuthenticated, authRole('admin'), async (req, res)
   }
 })
 
-router.put('/:id', ensureAuthenticated, authRole('admin'), async (req, res) => {
+router.put('/:id', ensureAuthenticated, async (req, res) => {
   let post
   try {
     post = await Post.findById(req.params.id)
     post.title = req.body.title,
     post.description = req.body.description,
-    post.user = req.body.user
+    post.user = req.user
     post.updatedAt = Date.now()
     await post.save()
     res.redirect(`/posts/${post.id}`)
