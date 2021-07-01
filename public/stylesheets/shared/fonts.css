@@ -9,6 +9,9 @@
   padding: 1rem 1rem;
   margin-bottom: 1rem;
 }
+.text-small {
+  font-size: .8rem;
+}
 
 .text-bright {
   color: var(--color-text-bright);
