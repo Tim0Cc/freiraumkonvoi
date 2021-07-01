@@ -54,7 +54,7 @@ router.get('/:id/edit', ensureAuthenticated, async (req, res) => {
   }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', ensureAuthenticated, async (req, res) => {
   let targetUser
   try {
     targetUser = await User.findById(req.params.id)
