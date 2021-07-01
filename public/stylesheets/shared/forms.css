@@ -92,3 +92,7 @@
   color: var(--color-text-light-hover);
   transition: var(--hover-transition);
 }
+
+.tinymce-small {
+  height: 3rem;
+}

@@ -6,14 +6,10 @@
     </form>
   </div>
   <div class="comment-border-top"></div>
-  <h3>Kommentare:</h3>
+  <h2>Kommentare:</h2>
   <% postComments.forEach(postComment => { %>
     <div class="comment-container">
       <div class="comments-row">
-        <div class="comment-date">
-          <% let commentUpdated = postComment.updatedAt %> 
-          zuletz geändert: <%= `${commentUpdated.getDate()}.${commentUpdated.getMonth()}.${commentUpdated.getFullYear()}` %>
-        </div>
         <div>
           <% users.forEach(user => { %> 
             <% if(user.id == postComment.user) { %>
@@ -22,12 +18,16 @@
           <% }) %> 
         </div>
         <div class="comment-date">
+          <% let commentUpdated = postComment.updatedAt %> 
+          zuletz geändert: <%= `${commentUpdated.getDate()}.${commentUpdated.getMonth()}.${commentUpdated.getFullYear()}` %>
+        </div>
+        <div class="comment-date">
           <% let commentCreated = postComment.createdAt %> 
           erstellt am: <%= `${commentCreated.getDate()}.${commentCreated.getMonth()}.${commentCreated.getFullYear()}` %>
         </div>
       </div>
-      <div class="comment-text">
-        <%= postComment.commentText %> 
+      <div class="comment-text text-bright">
+        <%- postComment.commentText %> 
       </div>
       <% if (currentUser.id == postComment.user) { %>
         <div class="btn-row btn-row-end">

@@ -1,7 +1,7 @@
 tinymce.init({
   selector: 'textarea.tinymce',
   // inline: true,
-  // height: 500,
+  height: 250,
   menubar: false,
   plugins: [
     'advlist autolink lists link image charmap print preview anchor',

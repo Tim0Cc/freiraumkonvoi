@@ -8,18 +8,23 @@
 }
 
 .comment-container {
-  border-bottom: 1px solid var(--color-border-gray);
+  /* border-bottom: 1px solid var(--color-border-gray); */
   padding: 1rem 0;
 }
 
 .comment-border-top{
   border-top: 4px solid var(--color-border-gray);
+  margin-top: 5rem;
+  margin-bottom: 3rem;
 }
 
 .comments-row {
+  border-top: 2px solid var(--color-border-gray);
   display: flex;
   justify-content: space-between;
-  margin-bottom: .5rem;
+  margin-top: .5rem;
+  /* margin-bottom: .5rem; */
+  padding: 0.5rem 0;
   font-size: .9rem;
 }
 

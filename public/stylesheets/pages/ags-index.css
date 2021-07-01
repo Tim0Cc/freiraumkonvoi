@@ -21,6 +21,11 @@
   padding: .5rem 0 .5rem 0;
 }
 
+.ag-row {
+  /* margin-bottom: 2rem; */
+  padding-bottom: 2rem;
+}
+
 .ag-name {
   grid-column: 1;
 }

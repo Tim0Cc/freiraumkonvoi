@@ -3,24 +3,27 @@
   <div class="ag-container ag-header">
     <div class="ag-name">AG</div>
     <div class="ag-posts">Arbeitsstand / Entscheidungen</div>
-    <div class="ag-info">AG-Info</div>
+    <div class="ag-info text-right">AG-Info</div>
   </div>
   <% targetUsers.forEach(targetUser => { %>
-    <div class="ag-container">
+    <div class="ag-container ag-row">
       <div class="ag-name">
-        <a class="btn btn-primary" href="users/<%=targetUser.id%>"><%= targetUser.name %></a>
+        <a class="btn btn-bright" href="users/<%=targetUser.id%>"><%= targetUser.name %></a>
       </div>
-      <div class="ag-posts">
-        <%= targetUser.statusOfWork  %> 
+      <div class="ag-posts text-bright">
+        <%- targetUser.statusOfWork  %> 
       </div>
-      <div class="ag-info">
-        <div class="ag-info-content">
-          Kontakt: <%= targetUser.contactMail %> 
-        </div>
-        <div class="ag-info-content">
-          <% let agDate = targetUser.registerDate %> 
-          letztes Protokoll: <%= `${agDate.getDate()}.${agDate.getMonth()}.${agDate.getFullYear()}` %> 
-        </div>
+      <div class="ag-info text-right">
+        <% if (targetUser.contactMail != null) { %> 
+          <div class="ag-info-content text-bright">
+            <p>
+              Kontakt: 
+            </p>
+            <p>
+              <%= targetUser.contactMail %> 
+            </p>
+          </div>
+        <% } %> 
       </div>
     </div>
   <%  })  %> 

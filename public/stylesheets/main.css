@@ -18,6 +18,13 @@
   color: var(--color-text-light);
 }
 
+.text-bright {
+  color: var(--color-text-bright);
+}
+.text-right {
+  text-align: right;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
