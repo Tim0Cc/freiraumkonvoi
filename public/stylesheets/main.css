@@ -11,6 +11,7 @@
 @import 'pages/posts-index.css';
 @import 'pages/posts-show.css';
 @import 'pages/posts-show-comments.css';
+@import 'pages/tools.css';
 
 :root {
   font-family: Arial,sans-serif;

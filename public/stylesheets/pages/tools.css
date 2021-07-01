@@ -1,0 +1,11 @@
+.tools a, .tools h3 {
+  color: var(--color-text-bright);
+  /* text-decoration: none; */
+}
+.tools a:hover {
+  color: var(--color-text-light-hover);
+}
+
+.tools div {
+  margin-top: 3rem;
+}

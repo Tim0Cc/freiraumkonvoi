@@ -4,11 +4,12 @@
     <ul>
       <li><a href="/users">AGs – Arbeitsgruppen</a></li>
       <li><a href="/posts">Protokolle</a></li>
+      <li><a href="/tools">Tools</a></li>
       <% if(isAuthenticated) { %>
         <li class="header-auth-links"><a href="/auth/logout">Logout</a></li>
       <% } else { %>
-        <li class="header-auth-links"><a href="/auth/register">Registrieren</a></li>
-        <li class="header-auth-links"><a href="/auth/login">Login</a></li>
+          <li class="header-auth-links"><a href="/auth/register">Registrieren</a></li>
+          <li class="header-auth-links"><a href="/auth/login">Login</a></li>
       <% } %> 
     </ul>
   </nav>

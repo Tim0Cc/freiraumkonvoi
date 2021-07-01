@@ -8,6 +8,10 @@ router.get('/', (req, res) => {
   res.render('index')
 })
 
+router.get('/tools', ensureAuthenticated, (req, res) => {
+  res.render('../public/pages/tools')
+})
+
 //dashboard page
 router.get('/dashboard', ensureAuthenticated, (req,res) => {
   res.render('users/dashboard', {
