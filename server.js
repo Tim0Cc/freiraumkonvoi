@@ -6,6 +6,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
 const app = express()
+const path = require('path')
 const expressLayout = require('express-ejs-layouts')
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
@@ -33,7 +34,7 @@ app.use(expressLayout)
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
 app.use(express.urlencoded({ limit: '10mb', extended: false }))
-// app.use(express.json())
+app.use(express.json())
 
 app.use(session({
   secret: process.env.SESSION_SECRET, // set session_secret generated
@@ -53,6 +54,8 @@ app.use((req, res, next) => {
   res.locals.error = req.flash('error');
   next();
 })
+
+app.use('/tinymce',  express.static(path.join(__dirname, 'node_modules', 'tinymce')))
 
 app.use('/auth', authRouter)
 app.use('/posts/:id', commentsRouter)
