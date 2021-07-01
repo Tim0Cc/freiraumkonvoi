@@ -19,7 +19,7 @@
         </div>
         <div class="comment-date">
           <% let commentUpdated = postComment.updatedAt %> 
-          zuletz geändert: <%= `${commentUpdated.getDate()}.${commentUpdated.getMonth()}.${commentUpdated.getFullYear()}` %>
+          zuletz geändert: <%= `${commentUpdated.getDate()}.${commentUpdated.getMonth()+1}.${commentUpdated.getFullYear()}` %>
         </div>
         <div class="comment-date">
           <% let commentCreated = postComment.createdAt %> 

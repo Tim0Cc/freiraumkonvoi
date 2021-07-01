@@ -1,0 +1,81 @@
+<h2 class="page-header">Kalender</h2>
+<div class="form-row btn-row btn-row-end">
+
+    <a class="btn btn-primary" href="/events/new">neues Ereignis erstellen</a>
+
+</div>
+<div class="page-container">
+  <div class="upcomingEvents">
+    <h3>Kommende Ereignisse</h3>
+    <div class="posts-container">
+      <div class="post-container post-header">
+        <div class="post-title">Events</div>
+        <div class="post-ag">AG</div>
+        <div class="post-container-info">Datum</div>
+      </div>
+      <% events.forEach(event => { %>
+        <% if (event.date > Date.now()) { %> 
+          <div class="post-container">
+            <div class="post-title">    
+              <a class="btn btn-primary" href="/events/<%= event.id %>"><%= event.title %></a>
+            </div>
+            <div class="post-title">    
+              <%- event.description %>
+            </div>
+            <% users.forEach(user => { %> 
+              <% if(user.id == event.user) { %>
+                <div class="post-ag">
+                  <%= user.name %>-AG  
+                </div>
+              <% } %> 
+            <% }) %>
+            <div class="post-container-info">
+              <div class="post-content">
+                <% let eventDate = event.date %> 
+                <%= `${eventDate.getDate()}.${eventDate.getMonth()+1}.${eventDate.getFullYear()} – ${eventDate.getHours()}:${eventDate.getMinutes()}` %>
+              </div>
+            </div> 
+          </div>
+        <% } %> 
+      <% }) %> 
+    </div>
+  </div>
+  <div class="pastEvents">
+    <h3>Vergangene Ereignisse</h3>
+    <div class="posts-container">
+      <div class="post-container post-header">
+        <div class="post-title">Events</div>
+        <div class="post-ag">AG</div>
+        <div class="post-container-info">Datum</div>
+      </div>
+      <% backwardsEvents.forEach(event => { %>
+        <% if (event.date <= Date.now()) { %> 
+          <div class="post-container">
+            <div class="post-title">    
+              <a class="btn btn-primary" href="/events/<%= event.id %>"><%= event.title %></a>
+            </div>
+            <div class="post-title">    
+              <%- event.description %>
+            </div>
+            <% users.forEach(user => { %> 
+              <% if(user.id == event.user) { %>
+                <div class="post-ag">
+                  <%= user.name %>-AG  
+                </div>
+              <% } %> 
+            <% }) %>
+            <div class="post-container-info">
+              <div class="post-content">
+                <% let eventDate = event.date %> 
+                <%= `${eventDate.getDate()}.${eventDate.getMonth()+1}.${eventDate.getFullYear()} – ${eventDate.getHours()}:${eventDate.getMinutes()}` %>
+              </div>
+            </div> 
+          </div>
+        <% } %> 
+      <% }) %> 
+    </div> 
+  </div>
+  <div class="form-row btn-row btn-row-end">
+    <a class="btn btn-primary" href="/events/new">neues Ereignis erstellen</a>
+  </div>
+</div>

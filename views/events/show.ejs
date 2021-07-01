@@ -1,0 +1,18 @@
+<h3 class="page-header"><%= event.user.name %> – <%= event.title %>'</h3>
+<div class="posts-show-container">
+  <div class="post-info">
+    <div class="ag-post-date">
+      <% let eventDate = event.date %> 
+      <%= `${eventDate.getDate()}.${eventDate.getMonth()+1}.${eventDate.getFullYear()} – ${eventDate.getHours()}:${eventDate.getMinutes()}` %>
+    </div>
+  </div>
+  <div class="text-bright">
+    <h2><%= event.title %></h2>  
+  </div>
+  <div class="textcontent border-top text-bright">
+    <%- event.description %> 
+  </div>
+  <div>
+    <%- include('_nav_links') %>
+  </div>
+</div>

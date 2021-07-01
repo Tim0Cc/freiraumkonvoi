@@ -3,11 +3,11 @@
   <div class="post-info">
     <div class="ag-post-date">
       <% let postUpdated = post.updatedAt %> 
-      zuletz geändert: <%= `${postUpdated.getDate()}.${postUpdated.getMonth()}.${postUpdated.getFullYear()}` %>
+      zuletz geändert: <%= `${postUpdated.getDate()}.${postUpdated.getMonth()+1}.${postUpdated.getFullYear()}` %>
     </div>
     <div class="ag-post-date">
       <% let postCreated = post.createdAt %> 
-      erstellt am: <%= `${postCreated.getDate()}.${postCreated.getMonth()}.${postCreated.getFullYear()}` %>
+      erstellt am: <%= `${postCreated.getDate()}.${postCreated.getMonth()+1}.${postCreated.getFullYear()}` %>
     </div>
   </div>
   <div class="text-bright">

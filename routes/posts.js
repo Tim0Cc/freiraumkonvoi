@@ -35,7 +35,7 @@ router.post('/', ensureAuthenticated, async (req, res) => {
   const post = new Post({
     title: req.body.title,
     description: req.body.description,
-    user: req.user,
+    user: req.user
   })
   try {
     await post.save()

@@ -1,0 +1,10 @@
+<a class="btn btn-back" href="/events">Kalender</a>
+<h2 class="page-header">neues Ereignis erstellen</h2>
+<div class="form-container">
+  <form action="/events" method="POST">
+    <%- include('_form_fields') %>
+    <div class="form-row btn-row btn-row-end">
+      <button class="btn btn-primary" type="submit">Ereignis erstellen</button>
+    </div>
+  </form>
+</div>

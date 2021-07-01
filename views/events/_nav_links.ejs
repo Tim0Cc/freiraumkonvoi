@@ -1,0 +1,12 @@
+<div class="btn-row">
+  <div>
+    <a class="btn btn-primary" href="/events">Kalender</a>
+    <a class="btn btn-back" href="/users/<%= event.user.id %>">zur <%= event.user.name %> - AG</a>
+  </div>
+  <div class="btn-row btn-row-end">
+    <% if (userAuth) { %> 
+      <a class="btn btn-primary" href="/events/<%= event.id %>/edit">Ereignis bearbeiten</a>
+      <%- include('../partials/deleteForm', {url: `/events/${event.id}` }) %> 
+    <% } %> 
+  </div>
+</div>

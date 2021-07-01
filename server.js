@@ -17,6 +17,7 @@ require("./config/passport")(passport)
 
 const authRouter = require('./routes/auth')
 const commentsRouter = require('./routes/comments')
+const eventsRouter = require('./routes/events')
 const indexRouter = require('./routes/index')
 const postsRouter = require('./routes/posts')
 const usersRouter = require('./routes/users')
@@ -59,6 +60,7 @@ app.use('/tinymce',  express.static(path.join(__dirname, 'node_modules', 'tinymc
 
 app.use('/auth', authRouter)
 app.use('/posts/:id', commentsRouter)
+app.use('/events', eventsRouter)
 app.use('/', indexRouter)
 app.use('/posts', postsRouter)
 app.use('/users', usersRouter)
