@@ -26,7 +26,7 @@
           erstellt am: <%= `${commentCreated.getDate()}.${commentCreated.getMonth()}.${commentCreated.getFullYear()}` %>
         </div>
       </div>
-      <div class="comment-text text-bright">
+      <div class="comment-text text-medium text-bright">
         <%- postComment.commentText %> 
       </div>
       <% if (currentUser.id == postComment.user) { %>

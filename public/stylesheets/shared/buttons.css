@@ -94,3 +94,7 @@
   background-color: var(--color-btn-danger-background-dark);
   transition: var(--hover-transition);
 }
+
+.btn-row-end .btn {
+  font-size: 1rem;
+}

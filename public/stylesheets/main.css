@@ -18,13 +18,6 @@
   color: var(--color-text-light);
 }
 
-.text-bright {
-  color: var(--color-text-bright);
-}
-.text-right {
-  text-align: right;
-}
-
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -48,11 +41,4 @@ body {
 .page-header {
   font-size: 2rem;
   font-size: 500; 
-}
-
-.textcontent {
-  padding: 2rem 1rem;
-  margin-bottom: 1rem;
-  border-top: 1px solid var(--color-border-gray);
-  border-bottom: 1px solid var(--color-border-gray);
 }
