@@ -25,12 +25,10 @@
         <% }) %>
         <div class="post-container-info">
           <div class="post-content">
-            <% let postUpdated = post.updatedAt %> 
-            zul. geändert: <%= `${postUpdated.getDate()}.${postUpdated.getMonth()+1}.${postUpdated.getFullYear()}` %>
+            geändert: <%= post.updatedAt.toLocaleDateString('de-DE') %> 
           </div>
           <div class="post-content">
-            <% let postCreated = post.createdAt %> 
-            erstellt am: <%= `${postCreated.getDate()}.${postCreated.getMonth()+1}.${postCreated.getFullYear()}` %>
+            ertsellt: <%= post.createdAt.toLocaleDateString('de-DE') %> 
           </div>
         </div> 
       </div>

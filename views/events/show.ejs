@@ -5,8 +5,7 @@
 <div class="posts-show-container">
   <div class="post-info">
     <div class="ag-post-date">
-      <% let eventDate = event.date %> 
-      <%= `${eventDate.getDate()}.${eventDate.getMonth()+1}.${eventDate.getFullYear()} – ${eventDate.getHours()}:${eventDate.getMinutes()}` %>
+      <%= event.date.toLocaleDateString('de-DE') %> – <%= event.date.toLocaleTimeString('de-DE').slice(0, -3) %> Uhr
     </div>
   </div>
   <div class="text-bright">

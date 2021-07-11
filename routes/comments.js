@@ -101,7 +101,10 @@ router.delete('/comments/:id', ensureAuthenticated, async (req, res) => {
     console.error(error)
     if (comment.post != null) {
       req.flash('error_msg', 'Fehler beim Löschen des Kommentars')
-      res.render('posts/show', { post: comment.post })
+      res.render('posts/show', { 
+        post: comment.post, 
+        error_msg: req.flash('error_msg')
+      })
     }
   }
 })

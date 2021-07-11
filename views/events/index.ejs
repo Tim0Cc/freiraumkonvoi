@@ -11,7 +11,7 @@
       <div class="post-container post-header">
         <div class="post-title">Events</div>
         <div class="post-ag">AG</div>
-        <div class="post-container-info">Datum</div>
+        <div class="post-container-info">Datum / Zeit</div>
       </div>
       <% events.forEach(event => { %>
         <% if (event.date > Date.now()) { %> 
@@ -31,8 +31,10 @@
             <% }) %>
             <div class="post-container-info">
               <div class="post-content">
-                <% let eventDate = event.date %> 
-                <%= `${eventDate.getDate()}.${eventDate.getMonth()+1}.${eventDate.getFullYear()} – ${eventDate.getHours()}:${eventDate.getMinutes()}` %>
+                <%= event.date.toLocaleDateString('de-DE') %>
+              </div>
+              <div class="post-content">
+                <%= event.date.toLocaleTimeString('de-DE').slice(0, -3) %>
               </div>
             </div> 
           </div>
@@ -46,7 +48,7 @@
       <div class="post-container post-header">
         <div class="post-title">Events</div>
         <div class="post-ag">AG</div>
-        <div class="post-container-info">Datum</div>
+        <div class="post-container-info">Datum / Zeit</div>
       </div>
       <% backwardsEvents.forEach(event => { %>
         <% if (event.date <= Date.now()) { %> 
@@ -66,8 +68,10 @@
             <% }) %>
             <div class="post-container-info">
               <div class="post-content">
-                <% let eventDate = event.date %> 
-                <%= `${eventDate.getDate()}.${eventDate.getMonth()+1}.${eventDate.getFullYear()} – ${eventDate.getHours()}:${eventDate.getMinutes()}` %>
+                <%= event.date.toLocaleDateString('de-DE') %>
+              </div>
+              <div class="post-content">
+                <%= event.date.toLocaleTimeString('de-DE').slice(0, -3) %> Uhr
               </div>
             </div> 
           </div>

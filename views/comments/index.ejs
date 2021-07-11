@@ -1,11 +1,4 @@
 <div class="comments-container">
-  <div>
-    <h4>Neuen Kommentar hinzufügen</h4>
-    <form action="/posts/<%=post.id%>" method="POST">
-      <%- include('_form_fields', { textContent: '', buttonText: 'kommentieren' }) %> 
-    </form>
-  </div>
-  <div class="comment-border-top"></div>
   <h2>Kommentare:</h2>
   <% postComments.forEach(postComment => { %>
     <div class="comment-container">
@@ -18,12 +11,10 @@
           <% }) %> 
         </div>
         <div class="comment-date">
-          <% let commentUpdated = postComment.updatedAt %> 
-          zuletz geändert: <%= `${commentUpdated.getDate()}.${commentUpdated.getMonth()+1}.${commentUpdated.getFullYear()}` %>
+          geändert: <%= postComment.updatedAt.toLocaleDateString('de-DE') %> 
         </div>
         <div class="comment-date">
-          <% let commentCreated = postComment.createdAt %> 
-          erstellt am: <%= `${commentCreated.getDate()}.${commentCreated.getMonth()}.${commentCreated.getFullYear()}` %>
+          ertsellt: <%= postComment.createdAt.toLocaleDateString('de-DE') %> 
         </div>
       </div>
       <div class="comment-text text-medium text-bright">
@@ -36,5 +27,12 @@
         </div>
       <% } %> 
     </div>
-  <% }) %> 
+  <% }) %>
+  <div class="comment-border-top"></div>
+  <div>
+    <h4>Neuen Kommentar hinzufügen</h4>
+    <form action="/posts/<%=post.id%>" method="POST">
+      <%- include('_form_fields', { textContent: '', buttonText: 'kommentieren' }) %> 
+    </form>
+  </div>
 </div>
