@@ -23,6 +23,8 @@
 
 .post-title {
   grid-column: 1 / 4;
+  line-height: 2.4rem;
+  
 }
 
 .post-ag {
