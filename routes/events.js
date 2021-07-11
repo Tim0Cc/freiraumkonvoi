@@ -93,8 +93,18 @@ router.put('/:id', ensureAuthenticated, async (req, res) => {
     event.date = req.body.date,
     event.user = req.user
     event.updatedAt = Date.now()
-    await event.save()
-    res.redirect(`/events/${event.id}`)
+    if (event.description.replace(/(<([^>]+)>)/g, "").length > 400) {
+      const currentUser = event.user
+      req.flash('error_msg', 'Der Text in der Beschreibung ist zu lang (maximal 400 Zeichen)')
+      res.render('events/new', { 
+        currentUser, 
+        event, 
+        error_msg: req.flash('error_msg')
+      })
+    } else {
+      await event.save()
+      res.redirect(`/events/${event.id}`)
+    }
   } catch (error) {
     console.error(error)
     if (event != null) {
