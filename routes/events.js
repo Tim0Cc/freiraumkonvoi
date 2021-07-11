@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const Event = require('../models/event')
 const User = require('../models/user')
-// const Comment = require('../models/comment')
 const { ensureAuthenticated, authRole } = require('../config/auth')
 
 router.get('/', ensureAuthenticated, async (req, res) => {
@@ -38,9 +37,20 @@ router.post('/', ensureAuthenticated, async (req, res) => {
     date: req.body.date,
     user: req.user
   })
+  
   try {
-    await event.save()
-    res.redirect('events')
+    if (event.description.replace(/(<([^>]+)>)/g, "").length > 400) {
+      const currentUser = event.user
+      req.flash('error_msg', 'Der Text in der Beschreibung ist zu lang (maximal 400 Zeichen)')
+      res.render('events/new', { 
+        currentUser, 
+        event, 
+        error_msg: req.flash('error_msg')
+      })
+    } else {
+      await event.save()
+      res.redirect('events')
+    }
   } catch (error) {
     console.error(error)
     res.redirect('events/new')
@@ -67,8 +77,6 @@ router.get('/:id/edit', ensureAuthenticated, async (req, res) => {
   try {
     const currentUser = req.user
     const event = await Event.findById(req.params.id).populate('user').exec()
-    // formattedDate = event.date.toISOString().slice(0,16)
-    // console.log(formattedDate)
     res.render('events/edit', { currentUser, event })
   } catch (error) {
     console.error(error)
@@ -110,5 +118,7 @@ router.delete('/:id', ensureAuthenticated, authRole('admin'), async (req, res) =
     }
   }
 })
+
+
 
 module.exports = router
